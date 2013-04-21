@@ -1,0 +1,15 @@
+<%= form_for(:session, :url => sessions_path) do |f| %>
+    <div class="control-group">
+        <%= label_tag t("shared.users.common.email") %><br />
+        <%= f.text_field :email, { :class => "span4" } %>
+    </div>
+
+    <div class="control-group">
+        <%= label_tag t("shared.users.common.password") %><br />
+        <%= f.password_field :password, { :class => "span4" } %>
+    </div>
+
+    <div class="controls">
+        <%= f.submit t("shared.users.login.login"), { :class => "btn-primary btn" } %>
+    </div>
+<% end %>
