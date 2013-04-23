@@ -7,7 +7,11 @@ class SessionsController < ApplicationController
         user = User.find_by_email(params[:session][:email].downcase)
         if user && user.password == params[:session][:password]
             sign_in user
-            redirect_to user_path
+            if user.admin?
+                redirect_to dashboard_home_path
+            else
+                redirect_to user_path
+            end
         else
             render "new"
         end

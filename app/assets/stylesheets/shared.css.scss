@@ -1,0 +1,72 @@
+@import "bootstrap";
+
+@mixin rounded-borders {
+    $radius: 5px;
+
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    box-radius: $radius; 
+}
+
+@mixin rounded($vert, $horz, $radius: 5px) {
+    -webkit-border-#{$vert}-#{$horz}-radius: $radius;
+    -mox-border-radius-#{$vert}-#{$horz}: $radius;
+    border-#{$vert}-#{$horz}-radius: $radius;
+}
+
+.rounded { 
+    @include rounded-borders; 
+    border: 1px solid #dddddd;
+} 
+.shadowed { box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+
+.layout-mini { padding: 15px 25px; }
+
+.navbar li span { float: none;
+    padding: 10px 15px 10px;
+    text-shadow: 0 1px 0 white; 
+    display: block;
+}
+
+.nav-tabs { margin-bottom: 0; }
+
+.tab-panel {
+    margin: 0;
+    padding: 10px 15px;
+    border: 1px solid rgb(221, 221, 221);
+    border-top: none;
+    @include rounded(bottom, left);
+    @include rounded(bottom, right);
+
+    ul li {
+        line-height: 1.8em;
+    }
+}
+
+.choise option { color: rgb(85, 85, 85); }
+.empty { color: #999999; }
+
+.section-title {
+    position: relative;
+    border-bottom: #ddd 1px solid;
+    padding-bottom: 4px;
+    span { 
+        position: absolute;
+        width: 50px;
+        height: 1px;
+        bottom: -1px;
+        left: 0;
+        background: #5bc0de;
+    }
+}
+
+.grey { color: #999999; }
+.tab-panel li.grey { line-height: 1.4em; }
+
+.sublist {
+    margin-bottom: 0.4em;
+    li { margin-left: 0.8em; }
+}
+.first-sublist {
+    margin-bottom: 1.8em; 
+}

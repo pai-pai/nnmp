@@ -1,0 +1,20 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+html, body {
+    height: 100%;
+}
+
+.dashboard {
+    .left-column {
+        padding: 50px 20px;
+    }
+
+    .right-column {
+        border-left: 1px solid #dddddd;
+        padding: 50px 25px 20px;
+    }
+
+    .row-fluid [class*="span"] { margin: 0; }
+} 

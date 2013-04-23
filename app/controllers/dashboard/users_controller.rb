@@ -1,9 +1,14 @@
 class Dashboard::UsersController < ApplicationController
+    before_filter :admin_check
+
+    layout "dashboard"
+
     def index
         @users = User.all
     end
 
     def new
+        @title = I18n.t("shared.users.adding.title")
         @user = User.new
     end
 

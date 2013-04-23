@@ -7,5 +7,12 @@ Nnmp::Application.routes.draw do
 
     namespace :dashboard do
         resources :users
+        resources :areas
+        resources :orgs
+        resources :units
+
+        match "add-user" => "users#new", :as => "add_user"
+
+        match "/" => "pages#home", :as => "home"
     end
 end

@@ -1,15 +1,22 @@
-<%= form_for(:session, :url => sessions_path) do |f| %>
-    <div class="control-group">
-        <%= label_tag t("shared.users.common.email") %><br />
-        <%= f.text_field :email, { :class => "span4" } %>
-    </div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span4 offset4 layout-mini rounded login">
+            <h3><%= @title %></h3>
+            <%= form_for(:session, :url => sessions_path) do |f| %>
+                <div class="control-group">
+                    <%= label_tag t("shared.users.common.email") %>
+                    <%= f.text_field :email, { :class => "span12" } %>
+                </div>
 
-    <div class="control-group">
-        <%= label_tag t("shared.users.common.password") %><br />
-        <%= f.password_field :password, { :class => "span4" } %>
-    </div>
+                <div class="control-group">
+                    <%= label_tag t("shared.users.common.password") %>
+                    <%= f.password_field :password, { :class => "span12" } %>
+                </div>
 
-    <div class="controls">
-        <%= f.submit t("shared.users.login.login"), { :class => "btn-primary btn" } %>
+                <div class="controls">
+                    <%= f.submit t("shared.users.login.login"), { :class => "btn-primary btn" } %>
+                </div>
+            <% end %>
+        </div>
     </div>
-<% end %>
+</div>

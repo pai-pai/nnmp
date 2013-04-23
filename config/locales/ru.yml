@@ -249,3 +249,49 @@ ru:
         pm: вечера
         errors:
             <<: *errors
+    shared:
+        common:
+            title: Нижегородская народная медицинская премия
+        dashboard:
+            common:
+                title: ! "ННМП. Администрирование"
+            nav:
+                home_html: ! '<i class="icon-home"></i>'
+            menu:
+                nominations: Номинации
+                organizations: Учреждения
+                candidates: Кандидаты
+                filled_forms: Заполненные формы
+                users: Пользователи
+        users:
+            common:
+                email: Email
+                password: Пароль
+            adding:
+                title: Добавление нового пользователя 
+                add: Добавить
+            login:
+                title: Вход
+                login: Войти
+            logout: Выйти
+        areas:
+            common:
+                title: Территории
+                name: Территория
+            adding:
+                title: Добавить территорию
+                add: Добавить
+        orgs:
+            common:
+                title: Учреждения
+                name: Наименование учреждения
+            adding:
+                title: Добавить учреждение
+                add: Добавить
+        units:
+            common:
+                title: Подразделения
+                name: Наименование подразделения
+            adding:
+                title: Добавить подразделение
+                add: Добавить

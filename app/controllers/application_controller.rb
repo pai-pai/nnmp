@@ -11,4 +11,12 @@ class ApplicationController < ActionController::Base
     def autorization_check
         redirect_to login_path if !signed_in?
     end
+
+    def admin_check
+        if current_user
+            redirect_to login_path if !current_user.admin?
+        else
+            redirect_to login_path
+        end
+    end
 end

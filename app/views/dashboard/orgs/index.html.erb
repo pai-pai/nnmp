@@ -1,0 +1,26 @@
+<ul class="nav nav-tabs">
+    <li class="active"><%= link_to t('shared.orgs.common.title'), dashboard_orgs_path %></li>
+    <li><%= link_to t('shared.units.common.title'), dashboard_units_path %></li>
+    <li><%= link_to t('shared.areas.common.title'), dashboard_areas_path %></li>
+</ul>
+<div id="orgs" class="tab-panel">
+    <h3><%= @title %></h3>
+    <ul class="unstyled">
+        <% @areas.each do |area| %>
+            <li><strong><%= area.name %></strong>
+                <ul class="unstyled sublist" id="area-<%= area.id %>">
+                    <% area.orgs.each do |org| %>
+                        <li><%= org.name %></li>
+                    <% end %>
+                </ul>
+            </li>
+        <% end %>
+    </ul>
+    <hr />
+    <h5><%= t('shared.orgs.adding.title') %></h5>
+    <%= form_for [ :dashboard, @org ], :remote => true, :html => { :class => "form-inline" } do |f| %>
+        <%= f.text_field :name, :placeholder => t('shared.orgs.common.name') %>
+        <%= f.collection_select :area_id, Area.order("id").all, :id, :name, { :prompt => "#{t('shared.areas.common.name')}..."  }, { :include_blank => true, :class => "choise" } %>
+        <%= f.submit t('shared.orgs.adding.add'),  { :class => "btn-primary btn" } %>
+    <% end %> 
+</div>

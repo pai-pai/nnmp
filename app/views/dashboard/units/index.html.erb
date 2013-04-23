@@ -1,0 +1,32 @@
+<ul class="nav nav-tabs">
+    <li><%= link_to t('shared.orgs.common.title'), dashboard_orgs_path %></li>
+    <li class="active"><%= link_to t('shared.units.common.title'), dashboard_units_path %></li>
+    <li><%= link_to t('shared.areas.common.title'), dashboard_areas_path %></li>
+</ul>
+<div id="units" class="tab-panel">
+    <h3><%= @title %></h3>
+    <ul class="unstyled">
+        <% Area.order("id").all.each do |area| %>
+            <li><h4 class="section-title"><%= area.name %><span></span></h4>
+                <ul class="unstyled sublist first-sublist">
+                    <% area.orgs.each do |org| %>
+                        <li><%= org.name %>
+                            <ul id="org-<%= org.id %>">
+                                <% org.units.each do |unit| %>
+                                    <li class="grey"><%= unit.name %></li>
+                                <% end %>
+                            </ul>
+                        </li>
+                    <% end %>
+                </ul>
+            </li>
+        <% end %>
+    </ul>
+    <hr />
+    <h5><%= t('shared.units.adding.title') %></h5>
+    <%= form_for [ :dashboard, @unit ], :remote => true, :html => { :class => "form-inline" } do |f| %>
+        <%= f.text_field :name, :placeholder => t('shared.units.common.name'), :class => "span4" %>
+        <%= f.grouped_collection_select(:org_id, Area.order("id").all, :orgs, :name, :id, :name, { :prompt => "#{t('shared.units.common.name')}..."  }, { :include_blank => true, :class => "choise span4" }) %>
+        <%= f.submit t('shared.units.adding.add'),  { :class => "btn-primary btn" } %>
+    <% end %> 
+</div>

@@ -1,9 +1,16 @@
-<%= form_for @user do |f| %>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+<h3><%= @title %></h3>
+<%= form_for [ :dashboard, @user ] do |f| %>
+    <div class="control-group">
+        <%= label_tag t("shared.users.common.email") %>
+        <%= f.text_field :email %>
+    </div>
 
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+    <div class="control-group">
+        <%= label_tag t("shared.users.common.password") %>
+        <%= f.password_field :password %>
+    </div>
 
-    <%= f.submit "Add user" %>
+    <div class="controls">
+        <%= f.submit t("shared.users.adding.add"), { :class => "btn-primary btn" } %>
+    </div>
 <% end %>

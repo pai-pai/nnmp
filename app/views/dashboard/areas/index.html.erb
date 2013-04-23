@@ -1,0 +1,19 @@
+<ul class="nav nav-tabs">
+    <li><%= link_to t('shared.orgs.common.title'), dashboard_orgs_path %></li>
+    <li><%= link_to t('shared.units.common.title'), dashboard_units_path %></li>
+    <li class="active"><%= link_to t('shared.areas.common.title'), dashboard_areas_path %></li>
+</ul>
+<div id="areas" class="tab-panel">
+    <h3><%= @title %></h3>
+    <ul class="unstyled">
+        <% @areas.each do |area| %>
+            <li><%= area.name %></li>
+        <% end %>
+    </ul>
+    <hr />
+    <h5><%= t('shared.areas.adding.title') %></h5>
+    <%= form_for [ :dashboard, @area ], :remote => true, :html => { :class => "form-inline" } do |f| %>
+        <%= f.text_field :name, :placeholder => t('shared.areas.common.name') %>
+        <%= f.submit t('shared.areas.adding.add'),  { :class => "btn-primary btn" } %>
+    <% end %> 
+</div>
