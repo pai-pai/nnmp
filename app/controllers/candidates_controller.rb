@@ -1,4 +1,6 @@
 class CandidatesController < ApplicationController
+    before_filter :autorization_check
+
     helper_method :sort_column, :sort_direction
 
     def index
