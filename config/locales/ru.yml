@@ -252,6 +252,9 @@ ru:
     shared:
         common:
             title: Нижегородская народная медицинская премия
+            search: Искать
+            send: Отправить
+            cancel: Отменить
             candidates:
                 title: Кандидаты
                 none: Список кандидатов пуст 
@@ -264,6 +267,13 @@ ru:
                 depart: Отделение
                 ward: Кабинет
                 count: Голоса
+            votes:
+                comment: Комментарии
+                voter_fio: ФИО проголосовавшего
+                voter_phone: Контактный телефон
+                new: 
+                    title: Форма для голосования
+                    link: Заполнить форму для голосования
         dashboard:
             common:
                 title: ! "ННМП. Администрирование"

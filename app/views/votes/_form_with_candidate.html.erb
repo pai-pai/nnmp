@@ -8,29 +8,30 @@
     <% end %>
 
     <div class="control-group">
-        <%= f.label :fam_name %>
+        <%= label_tag t("shared.common.candidates.fam_name") %>
         <%= f.text_field :fam_name, :value => @candidate.fam_name %>
     </div>
 
     <div class="control-group">
-        <%= f.label :first_name %>
+        <%= label_tag t("shared.common.candidates.first_name") %>
         <%= f.text_field :first_name, :value => @candidate.first_name %>
     </div>
 
     <div class="control-group">
-        <%= f.label :sec_name %>
+        <%= label_tag t("shared.common.candidates.sec_name") %>
         <%= f.text_field :sec_name, :value => @candidate.sec_name %>
     </div>
 
     <div class="control-group">
-        <%= f.label :nomination_id %>
-        <%= f.collection_select(:nomination_id, Nomination.order("name").all, :id, :name, { :select => @candidate.nomination_id }) %>
+        <%= label_tag t("shared.common.candidates.nomination_id") %>
+        <% @vote.nomination_id = @candidate.nomination_id %>
+        <%= f.collection_select(:nomination_id, Nomination.order("name").all, :id, :name) %>
     </div>
 
     <hr />
 
     <div class="control-group">
-        <%= f.label :org_id %>
+        <%= label_tag t("shared.common.candidates.org_id") %>
         <% if @candidate.org_id.blank? %>
             <%= f.grouped_collection_select(:org_id, Area.order("id").all, :orgs, :name, :id, :name, { :include_blank => true }) %>
         <% else %>
@@ -40,7 +41,7 @@
     </div>
 
     <div class="control-group">
-        <%= f.label :unit_id %>
+        <%= label_tag t("shared.common.candidates.unit_id") %>
         <% if @candidate.unit_id.blank? %>
             <%= f.grouped_collection_select(:unit_id, Org.order("area_id").all, :units, :name, :id, :name, { :include_blank => true }) %>
         <% else %>
@@ -50,36 +51,36 @@
     </div>
 
     <div class="control-group">
-        <%= f.label :depart %>
+        <%= label_tag t("shared.common.candidates.depart") %>
         <%= f.text_field :depart, :value => @candidate.depart %>
     </div>
 
     <div class="control-group">
-        <%= f.label :ward %>
+        <%= label_tag t("shared.common.candidates.ward") %>
         <%= f.text_field :ward, :value => @candidate.ward %>
     </div>
 
     <hr />
 
     <div class="control-group">
-        <%= f.label :comment %>
-        <%= f.text_area :comment %>
+        <%= label_tag t("shared.common.votes.comment") %>
+        <%= f.text_area :comment, :rows => 10, :cols => 40 %>
     </div>
 
     <hr />
 
     <div class="control-group">
-        <%= f.label :voter_fio %>
+        <%= label_tag t("shared.common.votes.voter_fio") %>
         <%= f.text_field :voter_fio %>
     </div>
 
     <div class="control-group">
-        <%= f.label :voter_phone %>
+        <%= label_tag t("shared.common.votes.voter_phone") %>
         <%= f.text_field :voter_phone %>
     </div>
 
     <div class="control-group buttons-group" %>
-        <%= f.submit "Send", { :class => "btn-primary btn" } %>
-        <%= submit_tag "Cancel", { :name => "cancel_button", :class => "btn" } %>
+        <%= f.submit t("shared.common.send"), { :class => "btn-primary btn new-vote-button" } %>
+        <%= submit_tag t("shared.common.cancel"), { :name => "cancel_button", :class => "btn new-vote-button" } %>
     </div>
 <% end %>

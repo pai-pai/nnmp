@@ -1,5 +1,7 @@
+<%= render "shared/user_bar" %>
 <div class="container-fluid">
     <div class="row-fluid">
+        <h3><%= @title %></h3>
         <% if @candidate.blank? %>
             <%= render "form_without_candidate" %>
         <% else %>

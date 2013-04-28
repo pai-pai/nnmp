@@ -1,5 +1,5 @@
 Nnmp::Application.routes.draw do
-    root :to => "votes#index"
+    root :to => "candidates#index"
 
     resources :users, :only => [ :show ]
     resources :sessions, :only => [ :new, :create, :destroy ]

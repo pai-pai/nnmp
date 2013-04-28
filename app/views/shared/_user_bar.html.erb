@@ -5,6 +5,7 @@
     <div class="pull-right">
         <ul class="unstyled inline">
             <li><span><%= t("shared.users.common.greeting") %></span><%= current_user.email %></li>
+            <li><%= link_to t("shared.users.logout"), logout_path, :method => "delete" %></li>
         </ul>
     </div>
 </div>

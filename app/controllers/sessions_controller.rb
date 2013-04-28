@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
             if user.admin?
                 redirect_to dashboard_home_path
             else
-                redirect_to user_path
+                redirect_to root_path
             end
         else
             render "new"

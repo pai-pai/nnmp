@@ -18,6 +18,7 @@
     @include rounded-borders; 
     border: 1px solid #dddddd;
 } 
+
 .shadowed { box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
 .layout-mini { padding: 15px 25px; }
@@ -82,4 +83,23 @@
         li { line-height: 20px; }
         span { color: #9c9a9b; }
     }
+}
+
+.candidates th {
+    .current {
+        padding-right: 12px;
+        background-repeat: no-repeat;
+        background-position: right center;
+    }
+
+    .asc { background-image: url(/images/up_arrow.gif); }
+    .desc { background-image: url(/images/down_arrow.gif); }
+}
+
+input[type="text"] { width: 376px; }
+select { width: 390px; }
+textarea { width: 376px; }
+input[type="submit"].new-vote-button { 
+    margin-right: 5px;
+    width: 190px; 
 }
