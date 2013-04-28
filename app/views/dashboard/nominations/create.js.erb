@@ -1,0 +1,2 @@
+$("#nominations ul").html("<% Nomination.order('name').all.each do |nomination| %><li><%= nomination.name %><% if !nomination.desc.blank? %><br /><span class='grey'><%= nomination.desc %></span><% end %></li><% end %>");
+$("#new_nomination")[0].reset();

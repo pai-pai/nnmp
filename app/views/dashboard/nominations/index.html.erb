@@ -1,0 +1,20 @@
+<div id="nominations">
+    <h3><%= @title %></h3>
+    <ul>
+        <% @nominations.each do |nomination| %>
+            <li>
+                <%= nomination.name %>
+                <% if !nomination.desc.blank? %>
+                    <br /><span class="grey"><%= nomination.desc %></span>
+                <% end %>
+            </li>
+        <% end %>
+    </ul>
+    <hr />
+    <h5><%= t('shared.nominations.adding.title') %></h5>
+    <%= form_for [ :dashboard, @nomination ], :remote => true, :html => { :class => "form-inline" } do |f| %>
+        <%= f.text_field :name, :placeholder => t('shared.nominations.common.name') %>
+        <%= f.text_field :desc, :placeholder => t('shared.nominations.common.desc') %>
+        <%= f.submit t('shared.nominations.adding.add'),  { :class => "btn-primary btn" } %>
+    <% end %> 
+</div>

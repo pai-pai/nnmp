@@ -1,0 +1,40 @@
+<%= render "shared/user_bar" %>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h3><%= @title %></h3>
+        <%= form_for candidates_path, :method => 'get', :html => { :class => "form-inline" } do %>
+            <%= hidden_field_tag :direction, params[:direction] %>
+            <%= hidden_field_tag :sort, params[:sort] %>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Search", :name => nil, :class => "btn-primary btn" %>
+        <% end %>
+        <% if @candidates.blank? %>
+            <p><%= t("shared.common.candidates.none") %></p>
+        <% else %>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><%= sortable "fam_name", t("shared.common.candidates.fam_name") %></th>
+                        <th><%= sortable "first_name", t("shared.common.candidates.first_name") %></th>
+                        <th><%= sortable "sec_name", t("shared.common.candidates.sec_name") %></th>
+                        <th><%= sortable "nomination_id", t("shared.common.candidates.nomination_id") %></th>
+                        <th width="43%"><%= sortable "org_id", t("shared.common.candidates.org_id") %></th>
+                        <th width="7%"><%= sortable "votes", t("shared.common.candidates.count") %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @candidates.each do |candidate| %>
+                        <tr>
+                            <td><%= link_to candidate.fam_name, new_candidate_vote_path(candidate.id) %></td>
+                            <td><%= link_to candidate.first_name, new_candidate_vote_path(candidate.id) %></td>
+                            <td><%= link_to candidate.sec_name, new_candidate_vote_path(candidate.id) %></td>
+                            <td><%= Nomination.find(candidate.nomination_id).name %></td>
+                            <td><%= Org.find(candidate.org_id).name %></td>
+                            <td><%= candidate.votes.count %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        <% end %>
+    </div>
+</div>

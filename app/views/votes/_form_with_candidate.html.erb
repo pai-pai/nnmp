@@ -1,0 +1,85 @@
+<%= form_for(@vote, :url => candidate_votes_path(@candidate)) do |f| %>
+    <% if !@vote.errors.blank? %>
+        <ul>
+            <% @vote.errors.full_messages.each do |msg| %>
+                <li><%= raw msg %></li>
+            <% end %>
+        </ul>
+    <% end %>
+
+    <div class="control-group">
+        <%= f.label :fam_name %>
+        <%= f.text_field :fam_name, :value => @candidate.fam_name %>
+    </div>
+
+    <div class="control-group">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, :value => @candidate.first_name %>
+    </div>
+
+    <div class="control-group">
+        <%= f.label :sec_name %>
+        <%= f.text_field :sec_name, :value => @candidate.sec_name %>
+    </div>
+
+    <div class="control-group">
+        <%= f.label :nomination_id %>
+        <%= f.collection_select(:nomination_id, Nomination.order("name").all, :id, :name, { :select => @candidate.nomination_id }) %>
+    </div>
+
+    <hr />
+
+    <div class="control-group">
+        <%= f.label :org_id %>
+        <% if @candidate.org_id.blank? %>
+            <%= f.grouped_collection_select(:org_id, Area.order("id").all, :orgs, :name, :id, :name, { :include_blank => true }) %>
+        <% else %>
+            <% @vote.org_id = @candidate.org_id %>
+            <%= f.grouped_collection_select(:org_id, Area.order("id").all, :orgs, :name, :id, :name) %>
+        <% end %>
+    </div>
+
+    <div class="control-group">
+        <%= f.label :unit_id %>
+        <% if @candidate.unit_id.blank? %>
+            <%= f.grouped_collection_select(:unit_id, Org.order("area_id").all, :units, :name, :id, :name, { :include_blank => true }) %>
+        <% else %>
+            <% @vote.unit_id = @candidate.unit_id %>
+            <%= f.grouped_collection_select(:unit_id, Org.order("area_id").all, :units, :name, :id, :name) %>
+        <% end %>
+    </div>
+
+    <div class="control-group">
+        <%= f.label :depart %>
+        <%= f.text_field :depart, :value => @candidate.depart %>
+    </div>
+
+    <div class="control-group">
+        <%= f.label :ward %>
+        <%= f.text_field :ward, :value => @candidate.ward %>
+    </div>
+
+    <hr />
+
+    <div class="control-group">
+        <%= f.label :comment %>
+        <%= f.text_area :comment %>
+    </div>
+
+    <hr />
+
+    <div class="control-group">
+        <%= f.label :voter_fio %>
+        <%= f.text_field :voter_fio %>
+    </div>
+
+    <div class="control-group">
+        <%= f.label :voter_phone %>
+        <%= f.text_field :voter_phone %>
+    </div>
+
+    <div class="control-group buttons-group" %>
+        <%= f.submit "Send", { :class => "btn-primary btn" } %>
+        <%= submit_tag "Cancel", { :name => "cancel_button", :class => "btn" } %>
+    </div>
+<% end %>

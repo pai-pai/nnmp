@@ -1,0 +1,11 @@
+<% if @votes.blank? %>
+    <p>No one votes</p>
+<% else %>
+    <ul>
+        <% @votes.each do |vote| %>
+            <li>
+                <strong><%= vote.id %></strong> - <%= Candidate.find(vote.candidate_id).fam_name %> <%= Candidate.find(vote.candidate_id).first_name %> <%= Candidate.find(vote.candidate_id).sec_name %><br /><span class="grey"><%= User.find(vote.user_id).email %></span>
+            </li>
+        <% end %>
+    </ul>
+<% end %>

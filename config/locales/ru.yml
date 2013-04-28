@@ -252,6 +252,18 @@ ru:
     shared:
         common:
             title: Нижегородская народная медицинская премия
+            candidates:
+                title: Кандидаты
+                none: Список кандидатов пуст 
+                fam_name: Фамилия
+                first_name: Имя
+                sec_name: Отчество
+                nomination_id: Специальность
+                org_id: Учреждение
+                unit_id: Подразделение
+                depart: Отделение
+                ward: Кабинет
+                count: Голоса
         dashboard:
             common:
                 title: ! "ННМП. Администрирование"
@@ -263,10 +275,15 @@ ru:
                 candidates: Кандидаты
                 filled_forms: Заполненные формы
                 users: Пользователи
+            stat:
+                orgs:
+                    title: Данные по учреждениям
+                    admin_title: Изменение списка учреждений
         users:
             common:
                 email: Email
                 password: Пароль
+                greeting: ! 'Здравствуйте, '
             adding:
                 title: Добавление нового пользователя 
                 add: Добавить
@@ -294,4 +311,12 @@ ru:
                 name: Наименование подразделения
             adding:
                 title: Добавить подразделение
+                add: Добавить
+        nominations:
+            common:
+                title: Изменение списка номинаций
+                name: Специальность
+                desc: Описание
+            adding:
+                title: Добавить номинацию
                 add: Добавить

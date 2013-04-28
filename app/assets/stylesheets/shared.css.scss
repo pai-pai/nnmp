@@ -70,3 +70,16 @@
 .first-sublist {
     margin-bottom: 1.8em; 
 }
+
+.user-bar {
+    overflow: hidden;
+    padding: 10px 20px;
+    background-color: #333434;
+    h4 { color: #9c9a9b; }
+    ul { 
+        color: #d4d4d4; 
+        margin: 10px 0;
+        li { line-height: 20px; }
+        span { color: #9c9a9b; }
+    }
+}

@@ -1,0 +1,9 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+        <% if @candidate.blank? %>
+            <%= render "form_without_candidate" %>
+        <% else %>
+            <%= render "form_with_candidate" %>
+        <% end %>
+    </div>
+</div>

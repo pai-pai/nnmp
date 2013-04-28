@@ -5,4 +5,8 @@ class Dashboard::PagesController < ApplicationController
 
     def home
     end
+
+    def orgs_stat
+        @title = I18n.t('shared.dashboard.stat.orgs.title')
+    end
 end
