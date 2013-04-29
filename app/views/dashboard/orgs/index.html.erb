@@ -10,7 +10,7 @@
         <% @areas.each do |area| %>
             <li><strong><%= area.name %></strong>
                 <ul class="unstyled sublist" id="area-<%= area.id %>">
-                    <% area.orgs.each do |org| %>
+                    <% area.orgs.order("id").each do |org| %>
                         <li><%= org.name %></li>
                     <% end %>
                 </ul>
