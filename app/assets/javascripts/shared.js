@@ -5,7 +5,6 @@ $(document).ready(function() {
         } else {
             $(this).removeClass("empty")
         };
-        console.log('Ho-ho-ho!');
     });
     $(".choise").each( function() { $(this).change() });
 });

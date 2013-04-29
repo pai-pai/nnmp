@@ -13,10 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-$(document).ready(function() {
-    if ($('html').height() < $(window).height()) {
+
+function resizeLeftColumn() {
+    if ($('.right-column').height() < $(window).height()) {
+        console.log('Hi!');
         $('.left-column').height($(window).height() - 60);
     } else {
-        $('.left-column').height($('html').height() - 60);
+        console.log('Ho!');
+        $('.left-column').height($('.right-column').height());
     }
+}
+
+$(document).ready(function() {
+    resizeLeftColumn();
+    $(window).resize(function() { resizeLeftColumn(); });
 })
