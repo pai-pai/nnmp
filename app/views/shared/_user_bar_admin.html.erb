@@ -1,13 +1,10 @@
 <div class="user-bar">
     <div class="pull-left">
-        <h4><%= t("shared.common.title") %></h4>
+        <h4><%= t("shared.dashboard.common.title_bar_html") %></h4>
     </div>
     <div class="pull-right">
         <ul class="unstyled inline">
             <li><span><%= t("shared.users.common.greeting") %></span><%= current_user.email %></li>
-            <% if current_user.admin? %>
-                <li><%= link_to t("shared.dashboard.common.come_in_link"), dashboard_home_path %></li>
-            <% end %>
             <li><%= link_to t("shared.users.logout"), logout_path, :method => "delete" %></li>
         </ul>
     </div>

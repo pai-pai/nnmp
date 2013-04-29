@@ -6,15 +6,37 @@ html, body {
     height: 100%;
 }
 
-.dashboard {
-    .left-column {
-        padding: 50px 20px;
-    }
-
-    .right-column {
-        border-left: 1px solid #dddddd;
-        padding: 50px 25px 20px;
-    }
-
-    .row-fluid [class*="span"] { margin: 0; }
+.container-fluid.dashboard {
+    padding: 0;
+    .row-fluid [class*="span"] { margin-left: 0; }
 } 
+
+.left-column { 
+    border-right: 1px solid #d4d5d0;
+    -webkit-box-shadow: 0 0 10px rgba(213, 212, 208, 0.8);
+}
+.right-column { 
+    padding: 0 0 0 2.6em; 
+}
+
+.dashboard-menu {
+    li {
+        a { 
+            padding-left: 1.3em; 
+            color: #696969;
+        }
+        line-height: 3.6em;
+        //border-left-width: 4px;
+        //border-left-style: solid;
+        border-bottom: 1px solid #e3e5d0;
+    }
+    li.active { background-color: #eeeeee; } 
+    //.home { border-left-color: #de6262; }
+    //.users { border-left-color: #63a9dd; }
+    //.nominations { border-left-color: #70c581; }
+    //.orgs { border-left-color: #dca763; }
+    //.candidates { border-left-color: #aa6e70; }
+    //.votes { border-left-color: #72a59c; }
+}
+
+.admin { color: #9d261d; }

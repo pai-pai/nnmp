@@ -12,7 +12,9 @@
         <%= csrf_meta_tags %>
     </head>
     <body>
-
+        <% if signed_in? %>
+            <%= render "shared/user_bar" %>
+        <% end %>
         <%= yield %>
 
     </body>

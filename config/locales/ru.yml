@@ -274,12 +274,16 @@ ru:
                 new: 
                     title: Форма для голосования
                     link: Заполнить форму для голосования
+                    link_html: ! '<i class="icon-ok"></i> голосовать'
         dashboard:
             common:
-                title: ! "ННМП. Администрирование"
+                title: ! "Администрирование | Нижегородская народная медицинская премия"
+                title_bar_html: ! 'Нижегородская народная медицинская премия. <span class="thin">Администрирование</span>'
+                come_in_link: Перейти в админ-панель
             nav:
                 home_html: ! '<i class="icon-home"></i>'
             menu:
+                home: Главная
                 nominations: Номинации
                 organizations: Учреждения
                 candidates: Кандидаты
@@ -289,6 +293,11 @@ ru:
                 orgs:
                     title: Данные по учреждениям
                     admin_title: Изменение списка учреждений
+            users:
+                title: Список пользователей
+                forms_count: Количество заполненных форм
+                last_activ: Последняя активность
+                adding_link: Добавить пользователя
         users:
             common:
                 email: Email

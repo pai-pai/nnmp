@@ -13,3 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$(document).ready(function() {
+    if ($('html').height() < $(window).height()) {
+        $('.left-column').height($(window).height() - 60);
+    } else {
+        $('.left-column').height($('html').height() - 60);
+    }
+})

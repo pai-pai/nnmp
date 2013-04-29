@@ -64,6 +64,11 @@
 .grey { color: #999999; }
 .tab-panel li.grey { line-height: 1.4em; }
 
+.thin { 
+    font-weight: normal; 
+    color: #d4d4d4;
+}
+
 .sublist {
     margin-bottom: 0.4em;
     li { margin-left: 0.8em; }
@@ -96,7 +101,12 @@
     .desc { background-image: url(/images/down_arrow.gif); }
 }
 
-input[type="text"] { width: 376px; }
+.candidates {
+    td.votes-count, th.votes-count { text-align: center; }
+    td.vote-action { padding-right: 0; text-align: right; }
+}
+
+input[type="text"], input[type="password"] { width: 376px; }
 select { width: 390px; }
 textarea { width: 376px; }
 input[type="submit"].new-vote-button { 

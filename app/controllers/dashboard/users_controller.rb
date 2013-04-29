@@ -4,7 +4,8 @@ class Dashboard::UsersController < ApplicationController
     layout "dashboard"
 
     def index
-        @users = User.all
+        @title = I18n.t("shared.dashboard.users.title")
+        @users = User.order("email asc").all
     end
 
     def new

@@ -1,5 +1,24 @@
-<ol>
-    <% @users.each do |user| %>
-        <li><%= user.email %></li>
-    <% end %>
-</ol>
+<h4><%= @title %></h4>
+<div><%= link_to t("shared.dashboard.users.adding_link"), dashboard_add_user_path, { :class => "pull-right" } %></div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th><%= t("shared.dashboard.users.forms_count") %></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @users.each do |user| %>
+            <tr>
+                <td>
+                    <% if user.admin? %>
+                        <span class="admin"><%= user.email %></span>
+                    <% else %>
+                        <%= user.email %>
+                    <% end %>
+                </td>
+                <td><%= Vote.find(:all, :conditions => [ "user_id = ?", user.id ]).count %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
