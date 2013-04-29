@@ -5,7 +5,7 @@ class Area < ActiveRecord::Base
 
     has_many :orgs
 
-    def self.sorted_orgs
+    def sort_orgs
         self.orgs.order("id")
     end
 end

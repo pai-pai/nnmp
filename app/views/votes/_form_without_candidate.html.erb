@@ -31,7 +31,7 @@
 
     <div class="control-group">
         <%= label_tag t("shared.common.candidates.org_id") %>
-        <%= f.grouped_collection_select(:org_id, Area.order("id").all, :orgs, :name, :id, :name, { :include_blank => true }) %>
+        <%= f.grouped_collection_select(:org_id, Area.order("id").all, :sort_orgs, :name, :id, :name, { :include_blank => true }) %>
     </div>
 
     <div class="control-group">

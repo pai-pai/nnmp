@@ -33,10 +33,10 @@
     <div class="control-group">
         <%= label_tag t("shared.common.candidates.org_id") %>
         <% if @candidate.org_id.blank? %>
-            <%= f.grouped_collection_select(:org_id, Area.order("id").all, sorted_orgs, :name, :id, :name, { :include_blank => true }) %>
+            <%= f.grouped_collection_select(:org_id, Area.order("id").all, :sort_orgs, :name, :id, :name, { :include_blank => true }) %>
         <% else %>
             <% @vote.org_id = @candidate.org_id %>
-            <%= f.grouped_collection_select(:org_id, Area.order("id").all, sorted_orgs, :name, :id, :name) %>
+            <%= f.grouped_collection_select(:org_id, Area.order("id").all, :sort_orgs, :name, :id, :name) %>
         <% end %>
     </div>
 
