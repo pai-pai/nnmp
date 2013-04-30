@@ -22,7 +22,7 @@ class Vote < ActiveRecord::Base
     belongs_to :candidate
 
     before_create :add_org_id
-    after_save :add_or_create_and_add_candidate_id
+    before_create :add_or_create_and_add_candidate_id
 
     #
     def fam_name

@@ -9,7 +9,7 @@ class VotesController < ApplicationController
         @title = I18n.t("shared.common.votes.new.title")
         if params[:candidate_id]
             @candidate = Candidate.find(params[:candidate_id])
-            @vote = @candidate.votes.new
+            @vote = @candidate.votes.build
         else
             @vote = Vote.new
         end
@@ -18,7 +18,7 @@ class VotesController < ApplicationController
     def create
         if params[:candidate_id]
             @candidate = Candidate.find(params[:candidate_id])
-            @vote = @candidate.votes.new(params[:vote].merge({ :user_id => current_user.id }))
+            @vote = @candidate.votes.build(params[:vote].merge({ :user_id => current_user.id }))
         else
             @vote = Vote.new(params[:vote].merge({ :user_id => current_user.id }))
         end
