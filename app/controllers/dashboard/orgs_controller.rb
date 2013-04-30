@@ -1,5 +1,5 @@
 class Dashboard::OrgsController < ApplicationController
-    before_filter :admin_check
+    before_filter :autorization_check
 
     layout "dashboard"
 

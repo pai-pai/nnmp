@@ -2,8 +2,10 @@
     <%= content_tag :li, :class => (params[:controller] == "dashboard/pages" ? 'home active' : 'home') do %>
         <%= link_to t('shared.dashboard.menu.home'), dashboard_home_path %>
     <% end %>
-    <%= content_tag :li, :class => (params[:controller].include?("users") ? 'users active' : 'users') do %>
-        <%= link_to t('shared.dashboard.menu.users'), dashboard_users_path %>
+    <% if current_user.admin? %>
+        <%= content_tag :li, :class => (params[:controller].include?("users") ? 'users active' : 'users') do %>
+            <%= link_to t('shared.dashboard.menu.users'), dashboard_users_path %>
+        <% end %>
     <% end %>
     <%= content_tag :li, :class => (params[:controller].include?("nominations") ? 'nominations active' : 'nominations') do %>
         <%= link_to t('shared.dashboard.menu.nominations'), dashboard_nominations_path %>
@@ -11,10 +13,12 @@
     <%= content_tag :li, :class => (params[:controller].include?("orgs") || params[:controller].include?("units") || params[:controller].include?("areas") ? 'orgs active' : 'orgs') do %>
         <%= link_to t('shared.dashboard.menu.organizations'), dashboard_orgs_path %>
     <% end %>
-    <%= content_tag :li, :class => (params[:controller].include?("candidates") ? 'candidates active' : 'candidates') do %>
-        <%= link_to t('shared.dashboard.menu.candidates'), dashboard_home_path %>
-    <% end %>
-    <%= content_tag :li, :class => (params[:controller].include?("votes") ? 'votes active' : 'votes') do %>
-        <%= link_to t('shared.dashboard.menu.filled_forms'), dashboard_home_path %>
+    <% if current_user.admin? %>
+        <%= content_tag :li, :class => (params[:controller].include?("candidates") ? 'candidates active' : 'candidates') do %>
+            <%= link_to t('shared.dashboard.menu.candidates'), dashboard_home_path %>
+        <% end %>
+        <%= content_tag :li, :class => (params[:controller].include?("votes") ? 'votes active' : 'votes') do %>
+            <%= link_to t('shared.dashboard.menu.filled_forms'), dashboard_home_path %>
+        <% end %>
     <% end %>
 </ul>
