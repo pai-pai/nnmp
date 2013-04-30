@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424122618) do
+ActiveRecord::Schema.define(:version => 20130430155822) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -76,11 +76,11 @@ ActiveRecord::Schema.define(:version => 20130424122618) do
   create_table "votes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "candidate_id"
-    t.string   "comment"
+    t.text     "comment",      :limit => 255
     t.string   "voter_fio"
     t.string   "voter_phone"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "votes", ["candidate_id"], :name => "index_votes_on_candidate_id"
