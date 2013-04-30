@@ -1,5 +1,4 @@
 $("div.container").html("<%=j render :partial => "nominations", :locals => { :nominations => @nominations_n } %>");
-$("#new_nomination")[0].reset();
 $('.edit-nomination').bind('click', function() {
     changeNomination( $(this) );
 });

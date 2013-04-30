@@ -16,7 +16,9 @@ Nnmp::Application.routes.draw do
         resources :areas
         resources :orgs
         resources :units
-        resources :nominations
+        resources :nominations, :only => [ :index, :new, :create, :edit, :update, :destroy, :get_to_edut ]
+
+        get "nominations/get_to_edit"
 
         match "add-user" => "users#new", :as => "add_user"
 

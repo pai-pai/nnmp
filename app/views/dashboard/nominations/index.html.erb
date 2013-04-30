@@ -1,16 +1,9 @@
-<div id="nominations">
-    <h3><%= @title %></h3>
-    <ul>
-        <% @nominations.each do |nomination| %>
-            <li>
-                <%= nomination.name %>
-                <% if !nomination.desc.blank? %>
-                    <br /><span class="grey"><%= nomination.desc %></span>
-                <% end %>
-            </li>
-        <% end %>
-    </ul>
-    <hr />
+<div id="nominations" class="span12">
+    <h4><%= @title %></h4>
+    <div class="for-alert"></div>
+    <div class="container">
+        <%= render :partial => "nominations", :locals => { :nominations => @nominations } %>
+    </div>
     <h5><%= t('shared.nominations.adding.title') %></h5>
     <%= form_for [ :dashboard, @nomination ], :remote => true, :html => { :class => "form-inline" } do |f| %>
         <%= f.text_field :name, :placeholder => t('shared.nominations.common.name') %>

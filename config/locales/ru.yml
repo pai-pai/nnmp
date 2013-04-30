@@ -247,8 +247,9 @@ ru:
             short_only_time: ! '%H:%M'
             short_date: ! '%d.%m.%Y, %H:%M'
         pm: вечера
-        errors:
-            <<: *errors
+    errors:
+        <<: *errors
+        restrict_nom_cand: "Невозможно удалить номинацию, пока в ней есть кандидаты"
     shared:
         common:
             title: Нижегородская народная медицинская премия
@@ -280,6 +281,8 @@ ru:
                 title: ! "Администрирование | Нижегородская народная медицинская премия"
                 title_bar_html: ! 'Нижегородская народная медицинская премия. <span class="thin">Администрирование</span>'
                 come_in_link: Перейти в админ-панель
+                edit_link: "Изменить" 
+                destroy_link_html: "Удалить"
             nav:
                 home_html: ! '<i class="icon-home"></i>'
             menu:

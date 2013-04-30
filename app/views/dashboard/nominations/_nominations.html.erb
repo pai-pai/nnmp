@@ -1,0 +1,20 @@
+<table class="admin-table">
+    <thead>
+    </thead>
+    <tbody>
+        <% nominations.each do |nomination| %>
+            <tr class="nmt-<%= nomination.id %>">
+                <td>
+                    <%= nomination.name %>
+                    <% if !nomination.desc.blank? %>
+                        <br /><span class="grey small"><%= nomination.desc %></span>
+                    <% end %>
+                </td>
+                <td class="actions">
+                    <button class="edit-nomination" value="<%= nomination.id %>"><%= t("shared.dashboard.common.edit_link") %></button>
+                    <%= link_to t("shared.dashboard.common.destroy_link_html"), [ :dashboard, nomination ], :method => :delete, :remote => true, :class => "destroy-nomination" %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

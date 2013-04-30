@@ -1,0 +1,8 @@
+<td colspan = "2">
+    <%= form_for [ :dashboard, this_nomination ], :remote => true, :html => { :class => "form-inline" } do |f| %>
+        <%= hidden_field_tag "id", "#{this_nomination.id}" %>
+        <%= f.text_field :name, :placeholder => t('shared.nominations.common.name') %>
+        <%= f.text_field :desc, :placeholder => t('shared.nominations.common.desc') %>
+        <%= f.submit t('shared.nominations.adding.add'),  { :class => "btn-primary btn" } %>
+    <% end %>
+</td>

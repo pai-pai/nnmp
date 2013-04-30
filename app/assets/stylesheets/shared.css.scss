@@ -14,6 +14,9 @@
     border-#{$vert}-#{$horz}-radius: $radius;
 }
 
+$link-color: #0088cc;
+$hover-link-color: #005580;
+
 .rounded { 
     @include rounded-borders; 
     border: 1px solid #dddddd;
@@ -106,10 +109,14 @@
     td.vote-action { padding-right: 0; text-align: right; }
 }
 
-input[type="text"], input[type="password"] { width: 376px; }
-select { width: 390px; }
-textarea { width: 376px; }
-input[type="submit"].new-vote-button { 
-    margin-right: 5px;
-    width: 190px; 
+.new_vote {
+    input[type="text"], input[type="password"] { width: 376px; }
+    select { width: 390px; }
+    textarea { width: 376px; }
+    input[type="submit"].new-vote-button { 
+        margin-right: 5px;
+        width: 190px; 
+    }
 }
+
+#search { width: 340px; }

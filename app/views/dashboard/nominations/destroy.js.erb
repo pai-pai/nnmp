@@ -1,0 +1,4 @@
+$("tr.nmt-<%= @val %>").remove();
+<% if @nomination.errors %>
+    $("#nominations .for-alert").html("<div class='alert alert-error'><ul class='unstyled'><% @nomination.errors.full_messages.each do |msg| %><li><%= raw msg %></li><% end %></ul></div>");
+<% end %>

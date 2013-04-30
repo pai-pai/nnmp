@@ -3,5 +3,5 @@ class Nomination < ActiveRecord::Base
 
     validates_presence_of :name
 
-    has_many :candidates
+    has_many :candidates, :dependent => :restrict
 end
