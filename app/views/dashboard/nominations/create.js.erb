@@ -1,5 +1,11 @@
-$("div.container").html("<%=j render :partial => "nominations", :locals => { :nominations => @nominations_n } %>");
-$("#new_nomination")[0].reset();
-$('.edit-nomination').bind('click', function() {
-    changeNomination( $(this) );
-});
+if ($(".for-alert .alert")) { $(".for-alert .alert").remove() };
+<% if @nomination %>
+    $("div.container").html("<%=j render :partial => "nominations", :locals => { :nominations => @nominations_n } %>");
+    $("#new_nomination")[0].reset();
+    $('.edit-nomination').bind('click', function() {
+        changeNomination( $(this) );
+    });
+<% elsif @nomination.errors %>
+    $("#nominations .for-alert").html("<%=j render :partial => "shared/errors_block", :locals => { :obj => @nomination } %>");
+    closer();
+<% end %>

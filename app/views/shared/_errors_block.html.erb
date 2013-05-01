@@ -1,0 +1,8 @@
+<div class="alert alert-error">
+    <button type="button" class="closer close" data-dismiss="alert">×</button>
+    <ul class="unstyled">
+        <% obj.errors.full_messages.each do |msg| %>
+            <li><%= raw msg %></li>
+        <% end %>
+    </ul>
+</div>

@@ -1,4 +1,7 @@
-$("tr.nmt-<%= @val %>").remove();
-<% if @nomination.errors %>
-    $("#nominations .for-alert").html("<div class='alert alert-error'><ul class='unstyled'><% @nomination.errors.full_messages.each do |msg| %><li><%= raw msg %></li><% end %></ul></div>");
+if ($(".for-alert .alert")) { $(".for-alert .alert").remove() };
+<% if @val %>
+    $("tr.nmt-<%= @val %>").remove();
+<% elsif @nomination.errors %>
+    $("#nominations .for-alert").html("<%=j render :partial => "shared/errors_block", :locals => { :obj => @nomination } %>");
+    closer();
 <% end %>

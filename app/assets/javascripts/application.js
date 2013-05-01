@@ -13,6 +13,17 @@ function changeNomination(object) {
             }
         });
     }
+    alertRemover();
+}
+
+function closer() {
+    $(".closer").bind('click', function() {
+        $(this).parent().remove();
+    })
+}
+
+function alertRemover() {
+    if ($(".for-alert .alert")) { $(".for-alert .alert").remove() };
 }
 
 function resizeLeftColumn() {

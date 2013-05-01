@@ -35,9 +35,9 @@ class Dashboard::NominationsController < ApplicationController
         @nomination = Nomination.find(params[:id])
         begin
             @nomination.destroy
-        rescue ActiveRecord::DeleteRestrictionError => e
+            @val = params[:id]
+        rescue ActiveRecord::DeleteRestrictionError
             @nomination.errors.add( :base, I18n.t("errors.restrict_nom_cand") )
         end
-        @val = params[:id]
     end
 end

@@ -1,3 +1,4 @@
+if ($(".for-alert .alert")) { $(".for-alert .alert").remove() };
 $("div.container").html("<%=j render :partial => "nominations", :locals => { :nominations => @nominations_n } %>");
 $('.edit-nomination').bind('click', function() {
     changeNomination( $(this) );
