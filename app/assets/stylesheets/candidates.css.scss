@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .vote-action { width: 8.5em; }
-.vote-container blockquote p {
-    font-size: 1em;
+
+.vote-container {
+    .text-right { font-size: 85%; color: #999999; }
+
+    blockquote p {
+        font-size: 1em;
+        margin-bottom: 0.4em;
+        &.notext { color: #9c9a9b; }
+    }
 }

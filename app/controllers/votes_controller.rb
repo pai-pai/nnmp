@@ -28,4 +28,11 @@ class VotesController < ApplicationController
             render :new
         end
     end
+
+    def destroy
+        @vote = Vote.find(params[:id])
+        @candidate = @vote.candidate_id
+        @vote.destroy
+        redirect_to candidate_path(@candidate)
+    end
 end
