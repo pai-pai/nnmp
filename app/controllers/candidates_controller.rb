@@ -43,9 +43,9 @@ class CandidatesController < ApplicationController
     def show
         @candidate = Candidate.find(params[:id])
         if current_user.admin?
-            @votes = Vote.find(:all, :conditions => [ "candidate_id = ?", "%#{params[:id]}%" ])
+            @votes = @candidate.votes
         else
-            @votes = Vote.find(:all, :conditions => [ "candidate_id = ? AND user_id = ?", "%#{params[:id]}%", current_user.id ])
+            @votes = Vote.find(:all, :conditions => [ "candidate_id = ? AND user_id = ?", "#{params[:id]}", current_user.id ])
         end
     end
 
