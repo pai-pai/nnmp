@@ -1,27 +1,41 @@
-<%= render "dashboard/shared/title" %>
-<ul class="nav nav-tabs">
-    <li class="active"><%= link_to t('shared.orgs.common.title'), dashboard_orgs_path %></li>
-    <li><%= link_to t('shared.units.common.title'), dashboard_units_path %></li>
-    <li><%= link_to t('shared.areas.common.title'), dashboard_areas_path %></li>
-</ul>
+<%= render "dashboard/shared/org_tabs" %>
 <div id="orgs" class="tab-panel">
-    <h3><%= @title %></h3>
-    <ul class="unstyled">
-        <% @areas.each do |area| %>
-            <li><strong><%= area.name %></strong>
-                <ul class="unstyled sublist" id="area-<%= area.id %>">
-                    <% area.orgs.order("id").each do |org| %>
-                        <li><%= org.name %></li>
-                    <% end %>
-                </ul>
-            </li>
-        <% end %>
-    </ul>
-    <hr />
-    <h5><%= t('shared.orgs.adding.title') %></h5>
-    <%= form_for [ :dashboard, @org ], :remote => true, :html => { :class => "form-inline" } do |f| %>
-        <%= f.text_field :name, :placeholder => t('shared.orgs.common.name') %>
-        <%= f.collection_select :area_id, Area.order("id").all, :id, :name, { :prompt => "#{t('shared.areas.common.name')}..."  }, { :include_blank => true, :class => "choise" } %>
-        <%= f.submit t('shared.orgs.adding.add'),  { :class => "btn-primary btn" } %>
-    <% end %> 
+    <table class="admin-table">
+        <tbody>
+            <% @areas.each do |area| %>
+                <tr>
+                    <th colspan="2"><%= area.name %></th>
+                </tr>
+                <tr>
+                    <td colspan="2" class="area-<%= area.id %>">
+                        <% if area.orgs.blank? %>
+                            <tr><td rowspan="2" class="text-center none"><%= t("shared.orgs.common.none") %></td></tr>
+                        <% else %>
+                            <table class="sub-table">
+                                <tbody>
+                                    <% area.orgs.order("id").each do |org| %>
+                                        <tr class="org-<%= org.id %>">
+                                            <td>
+                                                <%= org.name %>
+                                            </td>
+                                            <td class="actions">
+                                                <button class="edit-org" value="<%= org.id %>"><%= t("shared.dashboard.common.edit_link") %></button>
+                                                <%#= link_to t("shared.dashboard.common.destroy_link_html"), [ :dashboard, nomination ], :method => :delete, :remote => true, :class => "destroy-org" %>
+                                            </td>
+                                        </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
 </div>
+<h5><%= t('shared.orgs.adding.title') %></h5>
+<%= form_for [ :dashboard, @org ], :remote => true, :html => { :class => "form-inline" } do |f| %>
+    <%= f.text_field :name, :placeholder => t('shared.orgs.common.name') %>
+    <%= f.collection_select :area_id, Area.order("id").all, :id, :name, { :prompt => "#{t('shared.areas.common.name')}"  }, { :include_blank => true, :class => "choise" } %>
+    <%= f.submit t('shared.orgs.adding.add'),  { :class => "btn-primary btn" } %>
+<% end %>

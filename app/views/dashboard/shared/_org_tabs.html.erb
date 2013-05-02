@@ -1,0 +1,12 @@
+<h4><%= t("shared.orgs.common.main_title") %></h4>
+<ul class="nav nav-tabs orgs-tabs">
+    <%= content_tag :li, :class => ('active' if params[:controller].include?("areas")) do %>
+        <%= link_to t('shared.areas.common.title_html'), dashboard_areas_path %>
+    <% end %>
+    <%= content_tag :li, :class => ('active' if params[:controller].include?("orgs")) do %>
+        <%= link_to t('shared.orgs.common.title_html'), dashboard_orgs_path %>
+    <% end %>
+    <%= content_tag :li, :class => ('active' if params[:controller].include?("units")) do %>
+        <%= link_to t('shared.units.common.title_html'), dashboard_units_path %>
+    <% end %>
+</ul>

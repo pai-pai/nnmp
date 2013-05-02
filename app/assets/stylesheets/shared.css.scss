@@ -36,15 +36,13 @@ $hover-link-color: #005580;
 
 .tab-panel {
     margin: 0;
-    padding: 10px 15px;
+    margin-bottom: 1.8em;
+    padding: 0;
+    padding-bottom: 1em;
     border: 1px solid rgb(221, 221, 221);
     border-top: none;
     @include rounded(bottom, left);
     @include rounded(bottom, right);
-
-    ul li {
-        line-height: 1.8em;
-    }
 }
 
 .choise option { color: rgb(85, 85, 85); }

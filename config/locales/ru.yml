@@ -283,8 +283,6 @@ ru:
                 come_in_link: Перейти в админ-панель
                 edit_link: "Изменить" 
                 destroy_link_html: "Удалить"
-            nav:
-                home_html: ! '<i class="icon-home"></i>'
             menu:
                 home: Главная
                 nominations: Номинации
@@ -292,10 +290,6 @@ ru:
                 candidates: Кандидаты
                 filled_forms: Заполненные формы
                 users: Пользователи
-            stat:
-                orgs:
-                    title: Данные по учреждениям
-                    admin_title: Изменение списка учреждений
             users:
                 title: Список пользователей
                 forms_count: Количество заполненных форм
@@ -316,20 +310,25 @@ ru:
         areas:
             common:
                 title: Территории
+                title_html: "<strong>Территории</strong>"
                 name: Территория
             adding:
                 title: Добавить территорию
                 add: Добавить
         orgs:
             common:
+                main_title: Изменение списка учреждений
                 title: Учреждения
+                title_html: "<strong>Учреждения</strong>"
                 name: Наименование учреждения
+                none: ! "―" 
             adding:
                 title: Добавить учреждение
                 add: Добавить
         units:
             common:
                 title: Подразделения
+                title_html: "<strong>Подразделения</strong>"
                 name: Наименование подразделения
             adding:
                 title: Добавить подразделение

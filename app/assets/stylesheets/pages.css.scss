@@ -51,6 +51,16 @@ html, body {
     }
 }
 
+.edit-nomination, .edit-org { 
+    color: $link-color;
+    &:hover { color: $hover-link-color; text-decoration: underline; }
+}
+
+.destroy-nomination, .destroy-org { margin-left: 20px; }
+
+.nav-tabs.orgs-tabs a { padding-left: 1.6em; padding-right: 1.6em; }
+.nav-tabs.orgs-tabs > .active > a, .nav-tabs.orgs-tabs > .active > a:hover, .nav-tabs.orgs-tabs > .active > a:focus { background-color: #e6f1f6; }
+
 #nominations {
     .container { 
         border: 1px solid #e5e5e5;
@@ -63,9 +73,10 @@ html, body {
     .admin-table {
         width: 100%;
 
-        td.actions { text-align: right; }
         th, td { 
-            padding: 0.8em 0.5em; line-height: 1.4em; 
+            padding: 0.8em 0.5em; 
+            line-height: 1.4em; 
+            &.actions { text-align: right; }
             form { margin-bottom: 0; }
         }
         tr { border-bottom: 1px solid #e5e5e5; }
@@ -74,16 +85,37 @@ html, body {
             border-bottom: none; 
             td { padding-bottom: 1.8em; }
         }
-
-        .edit-nomination { 
-            color: $link-color;
-            &:hover { color: $hover-link-color; text-decoration: underline; }
-        }
-
-        .destroy-nomination { margin-left: 20px; }
     }
 
     .form {
         input { width: auto; }
+    }
+}
+
+#orgs {
+    table {
+        width: 100%;
+
+        td{ padding: 0; }
+
+        th { 
+            padding: 0.8em 0.5em; 
+            line-height: 1.4em; 
+            border-bottom: 1px solid #e5e5e5;
+            background-color: #e6f1f6;
+        }
+
+        .none { padding: 0.8em 0.5em; line-height: 1.4em; }
+
+        .sub-table {
+            tr:nth-child(odd) > td, tr:nth-child(odd) > th { background-color: #f9f9f9; }
+
+            td, th {
+                padding: 0.8em 0.5em; 
+                line-height: 1.4em;
+                border-bottom: 1px solid #e5e5e5;
+                &.actions { text-align: right; }
+            }
+        }
     }
 }

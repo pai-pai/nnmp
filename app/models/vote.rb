@@ -1,10 +1,10 @@
 class Vote < ActiveRecord::Base
     attr_accessible :comment, :voter_fio, :voter_phone, :user_id, :fam_name, :first_name, :sec_name, :ward, :depart, :org_id, :unit_id, :nomination_id, :candidate_id
 
-    validates :org_id, :presence => :true, :if => Proc.new { |c| c.unit_id.blank? }
-    validates_presence_of :nomination_id
+    validates :org_id, :presence => :true, :if => Proc.new { |c| c.unit_id.blank? }, :on => :create
+    validates_presence_of :nomination_id, :on => :create
 
-    validate :must_have_any_ident_info
+    validate :must_have_any_ident_info, :on => :create
 
     def must_have_any_ident_info
         if fam_name.blank?
