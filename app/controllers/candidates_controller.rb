@@ -31,7 +31,6 @@ class CandidatesController < ApplicationController
                 end
             end
             @candidates = tmp
-            #@candidates = @candidates.select! { |c| c.fam_name + c.first_name + c.sec_name =~ @search_phrase }
         end
     end
 
@@ -39,6 +38,15 @@ class CandidatesController < ApplicationController
     end
 
     def create
+    end
+
+    def show
+        @candidate = Candidate.find(params[:id])
+        if current_user.admin?
+            @votes = Vote.find(:all, :conditions => [ "candidate_id = ?", "%#{params[:id]}%" ])
+        else
+            @votes = Vote.find(:all, :conditions => [ "candidate_id = ? AND user_id = ?", "%#{params[:id]}%", current_user.id ])
+        end
     end
 
     private

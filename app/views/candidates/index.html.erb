@@ -28,15 +28,15 @@
                         <th><%= sortable "nomination_id", t("shared.common.candidates.nomination_id") %></th>
                         <th width="34%"><%= sortable "org_id", t("shared.common.candidates.org_id") %></th>
                         <th class="votes-count"><%= sortable "votes", t("shared.common.candidates.count") %></th>
-                        <th></th>
+                        <th class="vote-action"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <% @candidates.each do |candidate| %>
                         <tr>
-                            <td><%= link_to candidate.fam_name, new_candidate_vote_path(candidate.id) %></td>
-                            <td><%= link_to candidate.first_name, new_candidate_vote_path(candidate.id) %></td>
-                            <td><%= link_to candidate.sec_name, new_candidate_vote_path(candidate.id) %></td>
+                            <td><%= link_to candidate.fam_name, candidate_path(candidate.id) %></td>
+                            <td><%= link_to candidate.first_name, candidate_path(candidate.id) %></td>
+                            <td><%= link_to candidate.sec_name, candidate_path(candidate.id) %></td>
                             <td><%= Nomination.find(candidate.nomination_id).name %></td>
                             <td><%= Org.find(candidate.org_id).name %></td>
                             <td class="votes-count"><%= candidate.votes.count %></td>

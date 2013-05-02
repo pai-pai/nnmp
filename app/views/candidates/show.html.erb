@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+        <h3><%= @candidate.fam_name %> <%= @candidate.first_name %> <%= @candidate.sec_name %></h3>
+    </div>
+    <div class="row-fluid">
+        <ul class="unstyled">
+            <li><strong><%= t("shared.common.candidates.nomination_id") %>:</strong> <%= Nomination.find(@candidate.nomination_id).name %></li>
+            <li><strong><%= t("shared.common.candidates.org_id") %>:</strong> <%= Org.find(@candidate.org_id).name %></li>
+            <% if !@candidate.unit_id.blank? %>
+                <li><strong><%= t("shared.common.candidates.unit_id") %>:</strong> <%= Unit.find(@candidate.unit_id).name %></li>
+            <% end %>
+            <% if !@candidate.depart.blank? %>
+                <li><strong><%= t("shared.common.candidates.depart") %>:</strong> <%= @candidate.depart %></li>
+            <% end %>
+            <% if !@candidate.ward.blank? %>
+                <li><strong><%= t("shared.common.candidates.ward") %>:</strong> <%= @candidate.ward %></li>
+            <% end %>
+            <li><strong><%= t("shared.common.candidates.total_votes") %>:</strong> <%= @candidate.votes.count %></li>
+        </ul>
+    </div>
+</div>
