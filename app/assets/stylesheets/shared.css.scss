@@ -110,7 +110,7 @@ $hover-link-color: #005580;
 .new_vote {
     input[type="text"], input[type="password"] { width: 376px; }
     select { width: 390px; }
-    textarea { width: 376px; }
+    textarea { width: 99%; }
     input[type="submit"].new-vote-button { 
         margin-right: 5px;
         width: 190px; 
