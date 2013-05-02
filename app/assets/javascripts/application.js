@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require bootstrap-modal
 
 function changeNomination(object) {
     if (object.val()) {
@@ -26,6 +27,17 @@ function alertRemover() {
     if ($(".for-alert .alert")) { $(".for-alert .alert").remove() };
 }
 
+function commentCopy() {
+    $(".modal-body input:checked").each(function(){
+        if ($("#vote_comment").val() === "") {
+            $("#vote_comment").val( $("#vote_comment").val() + $(this).val() );
+        } else {
+            $("#vote_comment").val( $("#vote_comment").val() + "\n\n" + $(this).val() );
+        }
+    });
+    $('#comments-picker').modal('hide');
+}
+
 function resizeLeftColumn() {
     if ($('.right-column').height() < $(window).height()) {
         $('.left-column').height($(window).height() - 60);
@@ -40,5 +52,9 @@ $(document).ready(function() {
 
     $('.edit-nomination').bind('click', function() {
         changeNomination( $(this) );
+    });
+
+    $("#comments-picker .modal-footer .btn").bind('click', function() {
+        commentCopy();
     });
 })

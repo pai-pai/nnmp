@@ -7,4 +7,20 @@
             <%= render "form_with_candidate" %>
         <% end %>
     </div>
+    <div id="comments-picker" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4><%= t("shared.common.votes.all_comments") %></h4>
+        </div>
+        <div class="modal-body">
+            <% Vote.order("id").all.each do |vote| %>
+                <% if !vote.comment.blank? && vote.comment != "" %>
+                    <div class="checker"><input type="checkbox" name="copy-comment" value="<%= vote.comment %>"> <%= vote.comment %></div>
+                <% end %>
+            <% end %>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-primary"><%= t("shared.common.votes.paste_comment") %></a>
+        </div>
+    </div>
 </div>

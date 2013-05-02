@@ -275,6 +275,9 @@ ru:
                 none_in_form: Форма была заполнена без комментария, а также указания ФИО проголосовавшего и телефона
             votes:
                 comment: Комментарии
+                comment_html: ! "Комментарии | <a href='#comments-picker' data-toggle='modal' class='comment-picker'>Выбрать комментарий</a>"
+                all_comments: Все комментарии
+                paste_comment: Вставить выбранный комментарий
                 voter_fio: ФИО проголосовавшего
                 voter_phone: Контактный телефон
                 voter_phone_only: Телефон проголосовавшего
