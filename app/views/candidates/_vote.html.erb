@@ -1,0 +1,24 @@
+<div class="vote-container">
+    <div class="text-right"><%= l vote.created_at, :format => :short_date %></div>
+    <blockquote>
+        <% if !vote.voter_fio.blank? || !vote.voter_phone.blank? || !vote.comment.blank? %>
+            <p><%= vote.comment %></p>
+            <% if !vote.voter_fio.blank? || !vote.voter_phone.blank? %>
+                <small>
+                    <% if !vote.voter_fio.blank? %>
+                        <%=  %>
+                        <% if !vote.voter_phone.blank? %>
+                            , <%= vote.voter_phone %>
+                        <% end %>
+                    <% else %>
+                        <% if !vote.voter_phone.blank? %>
+                            <%= t("shared.common.votes.voter_phone_only") %>: <%= vote.voter_phone %>
+                        <% end %>
+                    <% end %>
+                </small>
+            <% end %>
+        <% else %>
+            <%= t("shared.common.candidates.none_in_form") %>
+        <% end %>
+    </blockquote>
+</div>

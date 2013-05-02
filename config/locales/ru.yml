@@ -245,7 +245,7 @@ ru:
             long: ! '%d %B %Y, %H:%M'
             short: ! '%d %b, %H:%M'
             short_only_time: ! '%H:%M'
-            short_date: ! '%d.%m.%Y, %H:%M'
+            short_date: ! '%d.%m.%Y'
         pm: вечера
     errors:
         <<: *errors
@@ -271,10 +271,13 @@ ru:
                 total_votes: Общее количество голосов
                 your_forms: Заполненные вами формы
                 all_forms: Заполненные формы
+                noone_your_forms: Заполненных вами форм нет
+                none_in_form: Форма была заполнена без комментария, а также указания ФИО проголосовавшего и телефона
             votes:
                 comment: Комментарии
                 voter_fio: ФИО проголосовавшего
                 voter_phone: Контактный телефон
+                voter_phone_only: Телефон проголосовавшего
                 new: 
                     title: Форма для голосования
                     link: Заполнить форму для голосования
