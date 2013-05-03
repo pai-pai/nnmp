@@ -2,7 +2,7 @@
     <div class="row-fluid">
         <h3><%= @candidate.fam_name %> <%= @candidate.first_name %> <%= @candidate.sec_name %></h3>
     </div>
-    <div class="row-fluid">
+    <div class="row-fluid candidate-info">
         <ul class="unstyled">
             <li><strong><%= t("shared.common.candidates.nomination_id") %>:</strong> <%= Nomination.find(@candidate.nomination_id).name %></li>
             <li><strong><%= t("shared.common.candidates.org_id") %>:</strong> <%= Org.find(@candidate.org_id).name %></li>
@@ -18,7 +18,7 @@
             <li><strong><%= t("shared.common.candidates.total_votes") %>:</strong> <%= @candidate.votes.count %></li>
         </ul>
     </div>
-    <div class="row-fluid">
+    <div class="row-fluid candidate-votes">
         <h4>
             <% if current_user.admin? %>
                 <%= t("shared.common.candidates.all_forms") %>
