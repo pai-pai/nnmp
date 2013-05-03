@@ -28,7 +28,9 @@
         </h4>
         <% if !@votes.blank? %>
             <% @votes.each do |vote| %>
-                <%= render :partial => "vote", :locals => { :vote => vote } %>
+                <div class="vote-container vote-<%= vote.id %>">
+                    <%= render :partial => "vote", :locals => { :vote => vote } %>
+                </div>
             <% end %> 
         <% else %>
             <%= t("shared.common.candidates.noone_your_forms") %>

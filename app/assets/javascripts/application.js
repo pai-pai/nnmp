@@ -17,6 +17,19 @@ function changeNomination(object) {
     alertRemover();
 }
 
+function changeVoteFront(object) {
+    if (object.val()) {
+        $.ajax({
+            dataType: "html",
+            url: "/votes/get_to_edit?vote_id=" + object.val(),
+            data: {},
+            success: function(data) {
+                $(".vote-" + object.val() + " blockquote").html(data);
+            }
+        });
+    }
+}
+
 function closer() {
     $(".closer").bind('click', function() {
         $(this).parent().remove();
@@ -52,6 +65,10 @@ $(document).ready(function() {
 
     $('.edit-nomination').bind('click', function() {
         changeNomination( $(this) );
+    });
+
+    $('.edit-vote-front').bind('click', function() {
+        changeVoteFront( $(this) );
     });
 
     $("#comments-picker .modal-footer .btn").bind('click', function() {

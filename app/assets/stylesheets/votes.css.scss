@@ -10,3 +10,21 @@ a.comment-picker { line-height: 1.8em; }
         margin-bottom: 0.8em;
     }
 }
+
+.edit-vote-front { 
+    font-size: 97%;
+    padding-bottom: 2px;
+    border: none;
+    background: none;
+    color: #0088cc;
+
+    &:hover {
+        color: #005580;
+        text-decoration: underline;
+    }
+}
+
+blockquote .edit_vote {
+    textarea { width: 99%; clear: both; }
+    .btn { margin-bottom: 10px; }
+}

@@ -29,6 +29,19 @@ class VotesController < ApplicationController
         end
     end
 
+    def get_to_edit
+        val = params[:vote_id]
+        render :partial => "edit_this_vote", :locals => { :this_vote => Vote.find(val) }
+    end
+
+    def update
+        @vote = Vote.find(params[:id]).update_attributes(params[:vote])
+        @vote = Vote.find(params[:id])
+        respond_to do |format|
+            format.js
+        end
+    end
+
     def destroy
         @vote = Vote.find(params[:id])
         @candidate = @vote.candidate_id

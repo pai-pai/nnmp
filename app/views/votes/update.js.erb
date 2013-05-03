@@ -1,0 +1,4 @@
+$(".vote-<%= @vote.id %>").html("<%=j render :partial => "candidates/vote", :locals => { :vote => @vote } %>");
+$('.edit-vote-front').bind('click', function() {
+    changeVoteFront( $(this) );
+});

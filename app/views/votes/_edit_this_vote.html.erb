@@ -1,0 +1,7 @@
+<%= form_for this_vote, :remote => true do |f| %>
+    <%= hidden_field_tag "id", "#{this_vote.id}" %>
+    <%= f.text_area :comment, :rows => 5, :cols => 40 %>
+    <%= f.text_field :voter_fio %> 
+    <%= f.text_field :voter_phone %>
+    <%= f.submit t('shared.nominations.adding.add'),  { :class => "btn-primary btn" } %>
+<% end %>
