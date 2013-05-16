@@ -13,10 +13,10 @@
     <%= content_tag :li, :class => (params[:controller].include?("orgs") || params[:controller].include?("units") || params[:controller].include?("areas") ? 'orgs active' : 'orgs') do %>
         <%= link_to t('shared.dashboard.menu.organizations'), dashboard_orgs_path %>
     <% end %>
+    <%= content_tag :li, :class => (params[:controller].include?("candidates") ? 'candidates active' : 'candidates') do %>
+        <%= link_to t('shared.dashboard.menu.candidates'), dashboard_candidates_path %>
+    <% end %>
     <% if current_user.admin? %>
-        <%= content_tag :li, :class => (params[:controller].include?("candidates") ? 'candidates active' : 'candidates') do %>
-            <%= link_to t('shared.dashboard.menu.candidates'), dashboard_candidates_path %>
-        <% end %>
         <%= content_tag :li, :class => (params[:controller].include?("votes") ? 'votes active' : 'votes') do %>
             <%= link_to t('shared.dashboard.menu.filled_forms'), dashboard_home_path %>
         <% end %>
