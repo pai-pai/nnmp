@@ -5,5 +5,5 @@ class Candidate < ActiveRecord::Base
     belongs_to :org
     belongs_to :unit
 
-    has_many :votes
+    has_many :votes, :dependent => :destroy
 end

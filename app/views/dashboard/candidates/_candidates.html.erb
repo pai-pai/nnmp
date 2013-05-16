@@ -1,0 +1,9 @@
+<ul class="admin-table unstyled">
+    <% candidates.each do |c| %>
+        <li class="drag" data-candidate="<%= c.id %>">
+            <span data-candidate="<%= c.id %>" class="fio"><%= c.fam_name %> <%= c.first_name %> <%= c.sec_name %></span>
+            <span data-candidate="<%= c.id %>" class="votes-count"><span class="badge badge-info" data-candidate="<%= c.id %>"><%= c.votes.count %></span></span>
+            <span data-candidate="<%= c.id %>"><%= link_to t("shared.dashboard.common.destroy_link_html"), [ :dashboard, c ], :confirm => t("shared.dashboard.candidates.warning"), :method => :delete, :remote => true, :class => "destroy-candidate", :id => c.id %></span>
+        </li>
+    <% end %>
+</ul>

@@ -116,6 +116,34 @@ html, body {
                 border-bottom: 1px solid #e5e5e5;
                 &.actions { text-align: right; }
             }
+
         }
     }
+}
+
+#candidates-dash {
+    .container { 
+        border: 1px solid #e5e5e5;
+        @include rounded-borders; 
+        margin: 0; 
+        margin-bottom: 1.8em;
+        width: 100%;
+    }
+
+    .admin-table {
+        width: 100%;
+
+        li { 
+            padding: 0.8em 0.5em; 
+            line-height: 1.4em; 
+            border-bottom: 1px solid #e5e5e5; 
+            background-color: white;
+            span { display: inline-block; }
+        }
+        li:nth-child(odd) { background-color: #f9f9f9; }
+    }
+
+    ul li:last-child { border-bottom: none; }
+    .fio { width: 60%; }
+    .votes-count { width: 15%; }
 }

@@ -1,0 +1,13 @@
+<div id="candidates-dash" class="span12">
+    <h4><%= @title %></h4>
+    <div class="for-alert"></div>
+    <% if cookies[:visited].blank? %>
+        <div class="alert alert-info">
+            <button type="button" class="close closer" data-dismiss="alert">×</button>
+            <%= t("shared.dashboard.candidates.help") %>
+        </div>
+    <% end %>
+    <div class="container">
+        <%= render :partial => "candidates", :locals => { :candidates => @candidates } %>
+    </div>
+</div>
