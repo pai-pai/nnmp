@@ -29,23 +29,28 @@ function moveVotes(from, to) {
 
 function makeDraggable() {
     $("#wait").hide();
+    $(".drag").each(function() {
+        var id = $(this).attr("id");
+        $(this).find('*').attr('data-candidate', id);
+    });
     $(".drag").draggable({
         containment: $("#candidates-dash .container ul"),
         opacity: 0.55,
         revert: true,
         zIndex: 1,
-        drag: function() { 
-            from_that_candidate = $(this).attr("data-candidate");
+        drag: function() {
+            if ($(this).attr("id")) {
+                from_that_candidate = $(this).attr("id");
+            } else {
+                from_that_candidate = $(this).attr("data-candidate");
+            }
         },
         stop: function(e) {
-            var yourElement = document.elementFromPoint(e.clientX, e.clientY);
-            console.log(yourElement);
-            if (!yourElement.id) {
-                to_that_candidate = yourElement.getAttribute("data-candidate");
-                console.log("dC " + yourElement.getAttribute("data-candidate"));
+            var draggOn = document.elementFromPoint(e.clientX, e.clientY);
+            if (!draggOn.id) {
+                to_that_candidate = draggOn.getAttribute("data-candidate");
             } else {
-                to_that_candidate = yourElement.id;
-                console.log("id");
+                to_that_candidate = draggOn.id;
             };
             moveVotes( from_that_candidate, to_that_candidate ); 
         }

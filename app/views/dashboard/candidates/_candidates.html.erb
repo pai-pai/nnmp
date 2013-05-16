@@ -1,9 +1,24 @@
 <ul class="admin-table unstyled">
     <% candidates.each do |c| %>
-        <li class="drag" data-candidate="<%= c.id %>">
-            <span data-candidate="<%= c.id %>" class="fio"><%= c.fam_name %> <%= c.first_name %> <%= c.sec_name %></span>
-            <span data-candidate="<%= c.id %>" class="votes-count"><span class="badge badge-info" data-candidate="<%= c.id %>"><%= c.votes.count %></span></span>
-            <span data-candidate="<%= c.id %>"><%= link_to t("shared.dashboard.common.destroy_link_html"), [ :dashboard, c ], :confirm => t("shared.dashboard.candidates.warning"), :method => :delete, :remote => true, :class => "destroy-candidate", :id => c.id %></span>
+        <li class="drag" id="<%= c.id %>">
+            <span class="fio">
+                <%= c.fam_name %> <%= c.first_name %> <%= c.sec_name %><br />
+                <div class="small grey">
+                    <strong><%= t("shared.common.candidates.nomination_id") %>:</strong> <%= Nomination.find(c.nomination_id).name %><br />
+                    <strong><%= t("shared.common.candidates.org_id") %>:</strong> <%= Org.find(c.org_id).name %><br />
+                    <% if !c.unit_id.blank? %>
+                        <strong><%= t("shared.common.candidates.unit_id") %>:</strong> <%= Unit.find(c.unit_id).name %><br />
+                    <% end %>
+                    <% if !c.depart.blank? %>
+                        <strong><%= t("shared.common.candidates.depart") %>:</strong> <%= c.depart %><br />
+                    <% end %>
+                    <% if !c.ward.blank? %>
+                        <strong><%= t("shared.common.candidates.ward") %>:</strong> <%= c.ward %><br />
+                    <% end %>
+                </div>
+            </span>
+            <span class="votes-count"><span class="badge badge-info"><%= c.votes.count %></span></span>
+            <span class="actions"><%= link_to t("shared.dashboard.common.destroy_link_html"), [ :dashboard, c ], :confirm => t("shared.dashboard.candidates.warning"), :method => :delete, :remote => true, :class => "destroy-candidate" %></span>
         </li>
     <% end %>
 </ul>
