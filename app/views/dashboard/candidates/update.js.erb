@@ -1,6 +1,5 @@
 $("#wait").show();
 $("#candidates-dash .container").html("<%=j render :partial => "candidates", :locals => { :candidates => @candidates } %>");
-$('.edit-candidate').bind('click', function() { changeCandidate( $(this) ) });
 makeDraggable();
 closer();
 $("#wait").hide();

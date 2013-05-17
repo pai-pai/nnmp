@@ -9,13 +9,8 @@ class Dashboard::CandidatesController < ApplicationController
         cookies.permanent[:visited] = "visit"
     end
 
-    def new
-    end
-
-    def create
-    end
-
     def show
+        @candidate = Candidate.find(params[:id])
     end
 
     def get_to_edit

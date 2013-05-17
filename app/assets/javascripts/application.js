@@ -16,7 +16,7 @@ function moveVotes(from, to) {
         $("#wait").show();
         $.ajax({
             dataType: "html",
-            url: "/dashboard/candidates/move_votes?from=" + from + "&to=" + to,
+            url: "/dashboard/move-votes?from=" + from + "&to=" + to,
             data: {},
             success: function(data) {
                 console.log("Yey! Success! ^_^"); 
@@ -29,6 +29,7 @@ function moveVotes(from, to) {
 
 function makeDraggable() {
     $("#wait").hide();
+    $('.edit-candidate').bind('click', function() { changeCandidate( $(this) ) });
     $(".drag").each(function() {
         var id = $(this).attr("id");
         $(this).find('*').attr('data-candidate', id);
@@ -75,7 +76,7 @@ function changeCandidate(object) {
     if (object.val()) {
         $.ajax({
             dataType: "html",
-            url: "/dashboard/candidates/get_to_edit?candidate_id=" + object.val(),
+            url: "/dashboard/get-candidate-to-edit?candidate_id=" + object.val(),
             data: {},
             success: function(data) {
                 $("#" + object.val()).html(data);

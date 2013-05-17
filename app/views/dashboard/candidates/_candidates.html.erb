@@ -2,7 +2,7 @@
     <% candidates.each do |c| %>
         <li class="drag" id="<%= c.id %>">
             <span class="fio">
-                <%= c.fam_name %> <%= c.first_name %> <%= c.sec_name %><br />
+                <%= link_to "#{c.fam_name} #{c.first_name} #{c.sec_name}", dashboard_candidate_path(c) %><br />
                 <div class="small grey">
                     <strong><%= t("shared.common.candidates.nomination_id") %>:</strong> <%= Nomination.find(c.nomination_id).name %><br />
                     <strong><%= t("shared.common.candidates.org_id") %>:</strong> <%= Org.find(c.org_id).name %><br />

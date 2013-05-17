@@ -19,11 +19,13 @@ Nnmp::Application.routes.draw do
         resources :orgs
         resources :units
         resources :nominations, :only => [ :index, :new, :create, :edit, :update, :destroy, :get_to_edut ]
-        resources :candidates, :only => [ :index, :edit, :update, :destroy, :move_votes, :get_to_edit ]
+        resources :candidates, :only => [ :index, :update, :destroy, :move_votes, :get_to_edit, :show ]
 
         get "nominations/get_to_edit"
         get "candidates/move_votes"
+        match "move-votes" => "candidates#move_votes"
         get "candidates/get_to_edit"
+        match "get-candidate-to-edit" => "candidates#get_to_edit"
 
         match "add-user" => "users#new", :as => "add_user"
 
