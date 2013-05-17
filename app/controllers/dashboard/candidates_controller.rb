@@ -11,6 +11,13 @@ class Dashboard::CandidatesController < ApplicationController
 
     def show
         @candidate = Candidate.find(params[:id])
+        @title = @candidate.fam_name + " " + @candidate.first_name + " " + @candidate.sec_name
+        if current_user.admin?
+            @votes = Vote.find(:all, :order => "id", :conditions => [ "candidate_id = ?", "#{params[:id]}" ])
+        else
+            @votes = Vote.find(:all, :order => "id", :conditions => [ "candidate_id = ? AND user_id = ?", "#{params[:id]}", current_user.id ])
+        end
+        render "/candidates/show"
     end
 
     def get_to_edit

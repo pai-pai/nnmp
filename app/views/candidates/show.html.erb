@@ -29,7 +29,7 @@
         <% if !@votes.blank? %>
             <% @votes.each do |vote| %>
                 <div class="vote-container vote-<%= vote.id %>">
-                    <%= render :partial => "vote", :locals => { :vote => vote } %>
+                    <%= render :partial => "/candidates/vote", :locals => { :vote => vote } %>
                 </div>
             <% end %> 
         <% else %>
