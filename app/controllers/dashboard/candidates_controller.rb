@@ -18,6 +18,19 @@ class Dashboard::CandidatesController < ApplicationController
     def show
     end
 
+    def get_to_edit
+        val = params[:candidate_id]
+        render :partial => "edit", :locals => { :candidate => Candidate.find(val) }
+    end
+
+    def update
+        @candidate = Candidate.find(params[:id]).update_attributes(params[:candidate])
+        @candidates = Candidate.order("fam_name, first_name, sec_name").all
+        respond_to do |format|
+            format.js
+        end
+    end
+
     def move_votes
         @from_candidate = Candidate.find( params[:from] )
         @to_candidate = Candidate.find( params[:to] )

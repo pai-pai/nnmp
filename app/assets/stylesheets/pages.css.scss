@@ -139,11 +139,26 @@ html, body {
             border-bottom: 1px solid #e5e5e5; 
             background-color: white;
             span { display: inline-block; }
+            form {
+                input[type="text"] { width: 30%; }
+                select { width: 50%; }
+                strong { display: inline-block; width: 18ex; }
+            }
         }
         li:nth-child(odd) { background-color: #f9f9f9; }
     }
 
     ul li:last-child { border-bottom: none; }
-    .fio { width: 60%; }
-    .votes-count { width: 15%; }
+    .fio { width: 76%; }
+    .votes-count { width: 8%; text-align: center; }
+    .actions { 
+        text-align: right;
+        width: 14%; 
+        color: #999999;
+        * { font-size: 85%; line-height: 100%; }
+        a, button { 
+            color: #0088cc;
+            &:hover { color: #005580; text-decoration: underline; }
+        }
+    }
 }

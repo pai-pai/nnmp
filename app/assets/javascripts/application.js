@@ -71,6 +71,20 @@ function changeNomination(object) {
     alertRemover();
 }
 
+function changeCandidate(object) {
+    if (object.val()) {
+        $.ajax({
+            dataType: "html",
+            url: "/dashboard/candidates/get_to_edit?candidate_id=" + object.val(),
+            data: {},
+            success: function(data) {
+                $("#" + object.val()).html(data);
+                promptStyling();
+            }
+        });
+    }
+}
+
 function changeVoteFront(object) {
     if (object.val()) {
         $.ajax({
@@ -111,7 +125,6 @@ function resizeLeftColumn() {
     } else {
         $('.left-column').height($('.right-column').height());
     };
-    $("#wait").height($('.left-column').height() + 60);
 }
 
 $(document).ready(function() {
@@ -122,15 +135,11 @@ $(document).ready(function() {
 
     closer();
 
-    $('.edit-nomination').bind('click', function() {
-        changeNomination( $(this) );
-    });
+    $('.edit-nomination').bind('click', function() { changeNomination( $(this) ) });
 
-    $('.edit-vote-front').bind('click', function() {
-        changeVoteFront( $(this) );
-    });
+    $('.edit-candidate').bind('click', function() { changeCandidate( $(this) ) });
 
-    $("#comments-picker .modal-footer .btn").bind('click', function() {
-        commentCopy();
-    });
+    $('.edit-vote-front').bind('click', function() { changeVoteFront( $(this) ) });
+
+    $("#comments-picker .modal-footer .btn").bind('click', function() { commentCopy() });
 })

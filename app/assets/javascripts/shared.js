@@ -1,4 +1,4 @@
-$(document).ready(function() {
+function promptStyling() {
     $(".choise").change(function() {
         if ($(this).val() < 1) {
             $(this).addClass("empty")
@@ -7,4 +7,8 @@ $(document).ready(function() {
         };
     });
     $(".choise").each( function() { $(this).change() });
+}
+
+$(document).ready(function() {
+    promptStyling();
 });

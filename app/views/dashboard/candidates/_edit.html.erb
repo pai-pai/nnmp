@@ -1,0 +1,12 @@
+<%= form_for [ :dashboard, candidate ], :remote => true do |f| %>
+    <%= hidden_field_tag "id", "#{candidate.id}" %>
+    <%= f.text_field :fam_name, :placeholder => t("shared.common.candidates.fam_name") %>
+    <%= f.text_field :first_name, :placeholder => t("shared.common.candidates.first_name") %>
+    <%= f.text_field :sec_name, :placeholder => t("shared.common.candidates.sec_name") %><br />
+    <strong><%= t("shared.common.candidates.nomination_id") %>:</strong> <%= f.collection_select :nomination_id, Nomination.order("name").all, :id, :name, { :prompt => "#{t('shared.common.candidates.nomination_id')}" }, { :include_blank => true, :class => "choise" } %><br />
+    <strong><%= t("shared.common.candidates.org_id") %>:</strong> <%= f.grouped_collection_select :org_id, Area.order("id").all, :sort_orgs, :name, :id, :name, { :prompt => "#{t('shared.common.candidates.org_id')}" }, { :include_blank => true, :class => "choise" } %><br />
+    <strong><%= t("shared.common.candidates.unit_id") %>:</strong> <%= f.grouped_collection_select :unit_id, Org.order("area_id").all, :units, :name, :id, :name, { :prompt => "#{t('shared.common.candidates.unit_id')}" }, { :include_blank => true, :class => "choise" } %><br />
+    <strong><%= t("shared.common.candidates.depart") %>:</strong> <%= f.text_field :depart, :placeholder => t("shared.common.candidates.depart") %><br />
+    <strong><%= t("shared.common.candidates.ward") %>:</strong> <%= f.text_field :ward, :placeholder => t("shared.common.candidates.ward") %><br />
+    <%= f.submit t("shared.nominations.adding.add"), { :class => "btn-primary btn" } %>
+<% end %>

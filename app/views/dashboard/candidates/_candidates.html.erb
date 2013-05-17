@@ -18,7 +18,8 @@
                 </div>
             </span>
             <span class="votes-count"><span class="badge badge-info"><%= c.votes.count %></span></span>
-            <span class="actions"><%= link_to t("shared.dashboard.common.destroy_link_html"), [ :dashboard, c ], :confirm => t("shared.dashboard.candidates.warning"), :method => :delete, :remote => true, :class => "destroy-candidate" %></span>
+            <span class="actions">
+                <button class="edit-candidate" value="<%= c.id %>"><%= t("shared.dashboard.common.edit_link") %></button> | <%= link_to t("shared.dashboard.common.destroy_link_html"), [ :dashboard, c ], :confirm => t("shared.dashboard.candidates.warning"), :method => :delete, :remote => true, :class => "destroy-candidate" %></span>
         </li>
     <% end %>
 </ul>
