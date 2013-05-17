@@ -1,5 +1,3 @@
-$("#wait").show();
 $("#candidates-dash .container").html("<%=j render :partial => "candidates", :locals => { :candidates => @candidates } %>");
 makeDraggable();
 closer();
-$("#wait").hide();

@@ -81,6 +81,7 @@ function changeCandidate(object) {
             success: function(data) {
                 $("#" + object.val()).html(data);
                 promptStyling();
+                $("#candidates-dash form input[type='submit']").click(function() { $("#wait").show() });
             }
         });
     }
