@@ -131,6 +131,7 @@ function resizeLeftColumn() {
 
 $(document).ready(function() {
     resizeLeftColumn();
+    $("#wait").hide();
     $(window).resize(function() { resizeLeftColumn(); });
 
     makeDraggable();
@@ -142,6 +143,8 @@ $(document).ready(function() {
     $('.edit-candidate').bind('click', function() { changeCandidate( $(this) ) });
 
     $('.edit-vote-front').bind('click', function() { changeVoteFront( $(this) ) });
+
+    $("#new_vote .btn").click(function() { $("#wait").show(); });
 
     $("#comments-picker .modal-footer .btn").bind('click', function() { commentCopy() });
 })
