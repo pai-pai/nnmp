@@ -10,6 +10,7 @@ class Dashboard::CandidatesController < ApplicationController
     end
 
     def show
+        session[:layout] = true
         @candidate = Candidate.find(params[:id])
         @title = @candidate.fam_name + " " + @candidate.first_name + " " + @candidate.sec_name
         if current_user.admin?

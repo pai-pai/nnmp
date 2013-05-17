@@ -46,6 +46,10 @@ class VotesController < ApplicationController
         @vote = Vote.find(params[:id])
         @candidate = @vote.candidate_id
         @vote.destroy
-        redirect_to candidate_path(@candidate)
+        if session[:layout].blank?
+            redirect_to candidate_path(@candidate)
+        else
+            redirect_to dashboard_candidate_path(@candidate)
+        end
     end
 end
