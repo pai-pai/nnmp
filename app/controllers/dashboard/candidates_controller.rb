@@ -5,7 +5,7 @@ class Dashboard::CandidatesController < ApplicationController
 
     def index
         @title = I18n.t("shared.common.candidates.title")
-        @candidates = Candidate.order("fam_name, first_name, sec_name").all
+        @candidates = Candidate.order("fam_name, first_name, sec_name, id").all
         cookies.permanent[:visited] = "visit"
     end
 
@@ -25,7 +25,7 @@ class Dashboard::CandidatesController < ApplicationController
 
     def update
         @candidate = Candidate.find(params[:id]).update_attributes(params[:candidate])
-        @candidates = Candidate.order("fam_name, first_name, sec_name").all
+        @candidates = Candidate.order("fam_name, first_name, sec_name, id").all
         respond_to do |format|
             format.js
         end
@@ -40,7 +40,7 @@ class Dashboard::CandidatesController < ApplicationController
                 vote.update_attributes( :candidate_id => @to_candidate.id )
             end
         end
-        render :partial => "candidates", :locals => { :candidates => Candidate.order("fam_name, first_name, sec_name").all }
+        render :partial => "candidates", :locals => { :candidates => Candidate.order("fam_name, first_name, sec_name, id").all }
     end
 
     def destroy
