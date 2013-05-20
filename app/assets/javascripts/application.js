@@ -140,9 +140,22 @@ $(document).ready(function() {
     $("#vote_first_name").autocomplete({
         source: function( request, response ) {
             $.ajax({
-                url: "/get-first-names",
+                url: "/get-io",
                 dataType: "json",
-                data: { start_with: request.term },
+                data: { search_first: request.term },
+                success: function(data) {
+                    response( $.map( data.names, function( item ){ return item.name; }));
+                }
+            });
+        }
+    });
+
+    $("#vote_sec_name").autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: "/get-io",
+                dataType: "json",
+                data: { search_sec: request.term },
                 success: function(data) {
                     response( $.map( data.names, function( item ){ return item.name; }));
                 }

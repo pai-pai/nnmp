@@ -6,11 +6,11 @@ Nnmp::Application.routes.draw do
     resources :candidates do
         resources :votes
     end
-    resources :votes, :only => [ :index, :new, :create, :update, :destroy, :get_to_edut ]
+    resources :votes
 
     get "votes/get_to_edit"
-    get "candidates/get_first_names"
-    match "get-first-names" => "candidates#get_first_names"
+    get "candidates/get_io"
+    match "get-io" => "candidates#get_io"
 
     match "login" => "sessions#new"
     match "logout" => "sessions#destroy", :via => :delete
@@ -20,8 +20,8 @@ Nnmp::Application.routes.draw do
         resources :areas
         resources :orgs
         resources :units
-        resources :nominations, :only => [ :index, :new, :create, :edit, :update, :destroy, :get_to_edut ]
-        resources :candidates, :only => [ :index, :update, :destroy, :move_votes, :get_to_edit, :show ]
+        resources :nominations
+        resources :candidates
 
         get "nominations/get_to_edit"
         get "candidates/move_votes"
