@@ -54,9 +54,9 @@ class CandidatesController < ApplicationController
     def get_io
         @names = Hash.new {}
         if params[:search_first]
-            @names["names"] = Candidate.order("first_name").all.map { |c| c.first_name.to_s }.uniq.select { |c| c =~ Regexp.new( "(" + params[:search_first] + ")", true ) }.collect { |c| { "name" => c } }
+            @names["names"] = Candidate.order("first_name").all.map { |c| c.first_name.to_s }.uniq.select { |c| c =~ Regexp.new( "^(" + params[:search_first] + ")", true ) }.collect { |c| { "name" => c } }
         elsif params[:search_sec]
-            @names["names"] = Candidate.order("sec_name").all.map { |c| c.sec_name.to_s }.uniq.select { |c| c =~ Regexp.new( "(" + params[:search_sec] + ")", true ) }.collect { |c| { "name" => c } }
+            @names["names"] = Candidate.order("sec_name").all.map { |c| c.sec_name.to_s }.uniq.select { |c| c =~ Regexp.new( "^(" + params[:search_sec] + ")", true ) }.collect { |c| { "name" => c } }
         end
         respond_to do |format|
            format.json { render :json => @names.to_json }
