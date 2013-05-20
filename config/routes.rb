@@ -9,6 +9,8 @@ Nnmp::Application.routes.draw do
     resources :votes, :only => [ :index, :new, :create, :update, :destroy, :get_to_edut ]
 
     get "votes/get_to_edit"
+    get "candidates/get_first_names"
+    match "get-first-names" => "candidates#get_first_names"
 
     match "login" => "sessions#new"
     match "logout" => "sessions#destroy", :via => :delete

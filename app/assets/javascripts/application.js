@@ -4,10 +4,13 @@
 //= require jquery.ui.widget
 //= require jquery.ui.mouse
 //= require jquery.ui.draggable
+//= require jquery.ui.autocomplete
+//= require jquery.ui.menu
+//= require jquery.ui.position
 //= require_tree .
 //= require bootstrap-modal
 
-var to_that_candidate, from_that_candidate;
+var to_that_candidate, from_that_candidate, first_names;
 
 function moveVotes(from, to) {
     console.log("Move votes from " + from + " to " + to);
@@ -133,6 +136,19 @@ $(document).ready(function() {
     resizeLeftColumn();
     $("#wait").hide();
     $(window).resize(function() { resizeLeftColumn(); });
+
+    $("#vote_first_name").autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: "/get-first-names",
+                dataType: "json",
+                data: { start_with: request.term },
+                success: function(data) {
+                    response( $.map( data.names, function( item ){ return item.name; }));
+                }
+            });
+        }
+    });
 
     makeDraggable();
 

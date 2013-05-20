@@ -51,6 +51,14 @@ class CandidatesController < ApplicationController
         end
     end
 
+    def get_first_names
+        @names = Hash.new {}
+        @names["names"] = Candidate.order("first_name").all.map { |c| c.first_name.to_s }.uniq.select { |c| c =~ Regexp.new( "(" + params[:start_with] + ")", true ) }.collect { |c| { "name" => c } }
+        respond_to do |format|
+           format.json { render :json => @names.to_json }
+        end
+    end
+
     private
         def sort_column
             if params[:sort] == "votes"
