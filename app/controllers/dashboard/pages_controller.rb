@@ -4,6 +4,7 @@ class Dashboard::PagesController < ApplicationController
     layout "dashboard"
 
     def home
+        @nominations = Nomination.order("name").all
     end
 
     def orgs_stat

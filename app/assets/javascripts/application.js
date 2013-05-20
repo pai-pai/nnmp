@@ -94,7 +94,7 @@ function changeVoteFront(object) {
     if (object.val()) {
         $.ajax({
             dataType: "html",
-            url: "/votes/get_to_edit?vote_id=" + object.val(),
+            url: "/get-vote-to-edit?vote_id=" + object.val(),
             data: {},
             success: function(data) {
                 $(".vote-" + object.val() + " blockquote").html(data);

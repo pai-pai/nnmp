@@ -9,6 +9,8 @@ Nnmp::Application.routes.draw do
     resources :votes
 
     get "votes/get_to_edit"
+    match "get-vote-to-edit" => "votes#get_to_edit"
+
     get "candidates/get_io"
     match "get-io" => "candidates#get_io"
 
