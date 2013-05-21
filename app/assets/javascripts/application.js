@@ -65,7 +65,7 @@ function changeNomination(object) {
     if (object.val()) {
         $.ajax({
             dataType: "html",
-            url: "/dashboard/nominations/get_to_edit?nomination_id=" + object.val(),
+            url: "/dashboard/get-nomination-to-edit?nomination_id=" + object.val(),
             data: {},
             success: function(data) {
                 $(".nmt-" + object.val()).html(data);

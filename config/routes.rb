@@ -26,6 +26,7 @@ Nnmp::Application.routes.draw do
         resources :candidates
 
         get "nominations/get_to_edit"
+        match "get-nomination-to-edit" => "nominations#get_to_edit"
         get "candidates/move_votes"
         match "move-votes" => "candidates#move_votes"
         get "candidates/get_to_edit"
