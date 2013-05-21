@@ -48,10 +48,12 @@
         <% end %>
     </div>
     <% if @pages.size > 1 %>
-        <div class="paginator">
-            <ul class="inline">
+        <div class="pagination" align="center">
+            <ul>
                 <% @pages.each do |page| %>
-                    <li><%= link_to page.to_s, { :controller => "candidates", :action => "index", :page => page, :sort => @sort, :direction => @direction } %></li>
+                    <%= content_tag :li, :class => ('active' if @page == page.to_i) do %>
+                        <%= link_to page.to_s, { :controller => "candidates", :action => "index", :page => page, :sort => @sort, :direction => @direction } %>
+                    <% end %>
                 <% end %>
             </ul>
         </div>

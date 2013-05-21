@@ -4,7 +4,7 @@ gem "rails", "~> 3.2.12"
 gem "rails-i18n"
 gem "jquery-rails"
 gem "therubyracer"
-gem "kaminari"
+#gem "kaminari"
 gem "bcrypt-ruby", :require => "bcrypt"
 
 group :production do
