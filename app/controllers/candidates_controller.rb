@@ -5,17 +5,19 @@ class CandidatesController < ApplicationController
 
     def index
         @title = I18n.t('shared.common.candidates.title')
-        if sort_column == "votes"
+        @direction = params[:sort_dir] || sort_direction
+        @sort = params[:sort_col] || sort_column
+        if @sort == "votes"
             @candidates = Candidate.all.sort! { |c1, c2| c1.votes.count <=> c2.votes.count }
-            sort_direction == "desc" ? @candidates.reverse! : @candidates
-        elsif sort_column == "nomination_id"
+            @direction == "desc" ? @candidates.reverse! : @candidates
+        elsif @sort == "nomination_id"
             @candidates = Candidate.all.sort! { |c1, c2| Nomination.find(c1.nomination_id).name <=> Nomination.find(c2.nomination_id).name }
-            sort_direction == "desc" ? @candidates.reverse! : @candidates
-        elsif sort_column == "org_id"
+            @direction == "desc" ? @candidates.reverse! : @candidates
+        elsif @sort == "org_id"
             @candidates = Candidate.all.sort! { |c1, c2| Org.find(c1.org_id).name <=> Org.find(c2.org_id).name }
-            sort_direction == "desc" ? @candidates.reverse! : @candidates
+            @direction == "desc" ? @candidates.reverse! : @candidates
         else
-            @candidates = Candidate.order(sort_column + " " + sort_direction)
+            @candidates = Candidate.order(@sort + " " + @direction)
         end
         if !params[:search].blank?
             #@search_phrase = Regexp.new("(" + params[:search].gsub(/( +)/, '|') + ")", true)
@@ -32,6 +34,11 @@ class CandidatesController < ApplicationController
             end
             @candidates = tmp
         end
+        @page = params[:page] || 1
+        @page = @page.to_i
+        per_page = 50
+        @pages = @candidates.size % per_page == 0 ? (1..( @candidates.size / per_page ).to_i).to_a : (1..(( @candidates.size / per_page ).to_i + 1)).to_a
+        @candidates = @candidates[( (@page - 1) * per_page )...( @page * per_page )]
     end
 
     def new

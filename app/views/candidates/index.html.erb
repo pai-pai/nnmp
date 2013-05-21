@@ -47,4 +47,13 @@
             </table>
         <% end %>
     </div>
+    <% if @pages.size > 1 %>
+        <div class="paginator">
+            <ul style="inline">
+                <% @pages.each do |page| %>
+                    <li><%= link_to page.to_s, { :controller => "candidates", :action => "index", :page => page, :sort => @sort, :direction => @direction } %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
 </div>
