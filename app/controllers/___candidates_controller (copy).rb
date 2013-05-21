@@ -5,8 +5,22 @@ class CandidatesController < ApplicationController
 
     def index
         @title = I18n.t('shared.common.candidates.title')
-        @candidates = Candidate.order("fam_name").all
+        @direction = params[:sort_dir] || sort_direction
+        @sort = params[:sort_col] || sort_column
+        if @sort == "votes"
+            @candidates = Candidate.all.sort! { |c1, c2| c1.votes.count <=> c2.votes.count }
+            @direction == "desc" ? @candidates.reverse! : @candidates
+        elsif @sort == "nomination_id"
+            @candidates = Candidate.all.sort! { |c1, c2| Nomination.find(c1.nomination_id).name <=> Nomination.find(c2.nomination_id).name }
+            @direction == "desc" ? @candidates.reverse! : @candidates
+        elsif @sort == "org_id"
+            @candidates = Candidate.all.sort! { |c1, c2| Org.find(c1.org_id).name <=> Org.find(c2.org_id).name }
+            @direction == "desc" ? @candidates.reverse! : @candidates
+        else
+            @candidates = Candidate.order(@sort + " " + @direction)
+        end
         if !params[:search].blank?
+            #@search_phrase = Regexp.new("(" + params[:search].gsub(/( +)/, '|') + ")", true)
             @search_phrase = params[:search].scan(/\S+/)
             tmp = []
             @candidates.each do |c|
