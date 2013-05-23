@@ -23,7 +23,7 @@ class CandidatesController < ApplicationController
         #@page = @page.to_i
         #per_page = 50
         #@pages = @candidates.size % per_page == 0 ? (1..( @candidates.size / per_page ).to_i).to_a : (1..(( @candidates.size / per_page ).to_i + 1)).to_a
-        @candidates = Candidate.find_by_sql "SELECT c.fam_name, c.id, c.first_name, c.sec_name, c.nomination_id, c.org_id 
+        @candidates = Candidate.find_by_sql "SELECT c.id, c.fam_name, c.first_name, c.sec_name, c.nomination_id, c.org_id 
                           FROM candidates c
                           ORDER BY c.fam_name, c.first_name, c.sec_name, c.org_id"
     end
@@ -48,7 +48,10 @@ class CandidatesController < ApplicationController
     def get_io
         @names = Hash.new {}
         if params[:search_first]
-            @names["names"] = Candidate.order("first_name").limit(20).all.map { |c| c.first_name.to_s }.uniq.select { |c| c =~ Regexp.new( "^(" + params[:search_first] + ")", true ) }.collect { |c| { "name" => c } }
+            @names["names"] = Candidate.find_by_sql "SELECT c.first_name 
+                                                     FROM candidates c
+                                                     ORDER BY c.first_name"
+            @names = @names.map { |c| c.first_name.to_s }.uniq.select { |c| c =~ Regexp.new( "^(" + params[:search_first] + ")", true ) }.collect { |c| { "name" => c } }
         elsif params[:search_sec]
             @names["names"] = Candidate.order("sec_name").limit(20).all.map { |c| c.sec_name.to_s }.uniq.select { |c| c =~ Regexp.new( "^(" + params[:search_sec] + ")", true ) }.collect { |c| { "name" => c } }
         end
