@@ -47,7 +47,8 @@
             </table>
         <% end %>
     </div>
-    <% if @pages.size > 1 %>
+    <h2><%= @pages %></h2>
+    <% if @pages %>
         <div class="pagination" align="center">
             <ul>
                 <% @pages.each do |page| %>
