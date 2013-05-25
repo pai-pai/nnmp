@@ -3,16 +3,13 @@
         <li class="nomination">
             <% @nominations.each do |nomination| %>
                 <% if !nomination.candidates.blank? %>
-                    <h4 class="n-name"><%= nomination.name %></h4>
+                    <h4 class="n-name"><%= nomination.name %> <span class="all-cand"><%= nomination.candidates.count %></span></h4>
                     <ul class="unstyled candidates">
                         <% nomination.top_candidates(5).each do |candidate| %>
-                            <% candidate = Candidate.find(candidate.id) %>
                             <li class="candidate">
                                 <span class="c_name">
-                                    <%= candidate.fam_name %>&nbsp;
-                                    <%= candidate.first_name %>&nbsp;
-                                    <%= candidate.sec_name %>&nbsp;--&nbsp;
-                                    <%= Vote.find_all_by_candidate_id(candidate.id).count %>
+                                    <%= link_to "#{candidate.fam_name} #{candidate.first_name} #{candidate.sec_name}", dashboard_candidate_path(candidate) %> 
+                                    <%= Vote.find_all_by_candidate_id(candidate.id).count %><br />
                                 </span>
                             </li>
                         <% end %>

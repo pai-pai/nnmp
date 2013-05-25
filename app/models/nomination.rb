@@ -6,9 +6,6 @@ class Nomination < ActiveRecord::Base
 
     has_many :candidates, :dependent => :restrict
 
-    def all_candidates
-    end
-
     def top_candidates( num )
         if !num.blank?
             if num.is_a? Integer
