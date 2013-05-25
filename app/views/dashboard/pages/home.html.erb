@@ -5,9 +5,15 @@
                 <% if !nomination.candidates.blank? %>
                     <h4 class="n-name"><%= nomination.name %></h4>
                     <ul class="unstyled candidates">
-                        <% nomination.candidates.each do |candidate| %>
+                        <% nomination.top_candidates(5).each do |candidate| %>
+                            <% candidate = Candidate.find(candidate.id) %>
                             <li class="candidate">
-                                <span class="c_name"><%= candidate.try(:fam_name) %><%= candidate.try(:first_name) %><%= candidate.try(:sec_name) %></span>
+                                <span class="c_name">
+                                    <%= candidate.fam_name %>&nbsp;
+                                    <%= candidate.first_name %>&nbsp;
+                                    <%= candidate.sec_name %>&nbsp;--&nbsp;
+                                    <%= Vote.find_all_by_candidate_id(candidate.id).count %>
+                                </span>
                             </li>
                         <% end %>
                     </ul>

@@ -47,16 +47,7 @@
             </table>
         <% end %>
     </div>
-    <h2><%= @pages %></h2>
-    <% if @pages %>
-        <div class="pagination" align="center">
-            <ul>
-                <% @pages.each do |page| %>
-                    <%= content_tag :li, :class => ('active' if @page == page.to_i) do %>
-                        <%= link_to page.to_s, { :controller => "candidates", :action => "index", :page => page, :sort => @sort, :direction => @direction } %>
-                    <% end %>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
+   <div class="pagination" align="center">
+       <%#= paginate @candidates %>
+   </div>
 </div>

@@ -95,34 +95,65 @@ class Vote < ActiveRecord::Base
     end
 
     def add_or_create_and_add_candidate_id
-        @candidate = Candidate.find(:all, :conditions => [ "org_id = ? AND nomination_id = ?", self.org_id, self.nomination_id ])
-        if !@candidate.blank?
-            @candidate.select! { |cand| cand.fam_name == self.fam_name } if !self.fam_name.blank?
-            @candidate.select! { |cand| cand.first_name == self.first_name  } if !self.first_name.blank?
-            @candidate.select! { |cand| cand.sec_name == self.sec_name  } if !self.sec_name.blank?
-            @candidate.select! { |cand| cand.ward == self.ward  } if !self.ward.blank?
-            if @candidate.size > 0
-                @candidate = @candidate.sort! { |cand1, cand2| cand1.updated_at <=> cand2.updated_at }[0]
-            else
-                @candidate = Candidate.create!( :fam_name => self.fam_name,
-                               :first_name => self.first_name,
-                               :sec_name => self.sec_name,
-                               :nomination_id => self.nomination_id,
-                               :org_id => self.org_id,
-                               :unit_id => self.unit_id,
-                               :depart => self.depart,
-                               :ward => self.ward )
-            end
-        else
+        condition = "c.org_id=#{ org_id } AND c.nomination_id=#{ nomination_id }"
+        condition = condition + " AND c.fam_name IN ('#{self.fam_name}', '')" if !self.fam_name.blank?
+        condition = condition + " AND c.first_name IN ('#{self.first_name}', '')" if !self.first_name.blank?
+        condition = condition + " AND c.sec_name IN ('#{self.sec_name}', '')" if !self.sec_name.blank?
+        condition = condition + " AND c.unit_id IN (#{self.unit_id}, '')" if !self.unit_id.blank?
+        condition = condition + " AND c.depart IN ('#{self.depart}', '')" if !self.depart.blank?
+        condition = condition + " AND c.ward IN ('#{self.ward}', '')" if !self.ward.blank?
+        @candidate = Candidate.find_by_sql "SELECT *
+                                            FROM candidates c
+                                            WHERE #{condition}
+                                            ORDER BY c.updated_at
+                                            LIMIT 1"
+        if @candidate.blank?
             @candidate = Candidate.create!( :fam_name => self.fam_name,
-                               :first_name => self.first_name,
-                               :sec_name => self.sec_name,
-                               :nomination_id => self.nomination_id,
-                               :org_id => self.org_id,
-                               :unit_id => self.unit_id,
-                               :depart => self.depart,
-                               :ward => self.ward )
+                                            :first_name => self.first_name,
+                                            :sec_name => self.sec_name,
+                                            :nomination_id => self.nomination_id,
+                                            :org_id => self.org_id,
+                                            :unit_id => self.unit_id,
+                                            :depart => self.depart,
+                                            :ward => self.ward )
+        else
+            @candidate = @candidate[0]
+            @candidate.update_attributes(fam_name: self.fam_name) if !self.fam_name.blank?
+            @candidate.update_attributes(first_name: self.first_name) if !self.first_name.blank?
+            @candidate.update_attributes(sec_name: self.sec_name) if !self.sec_name.blank?
+            @candidate.update_attributes(unit_id: self.unit_id) if !self.unit_id.blank?
+            @candidate.update_attributes(depart: self.depart) if !self.depart.blank?
+            @candidate.update_attributes(ward: self.ward) if !self.ward.blank?
         end
+
+        #@candidate = Candidate.find(:all, :conditions => [ "org_id = ? AND nomination_id = ?", self.org_id, self.nomination_id ])
+        #if !@candidate.blank?
+        #    @candidate.select! { |cand| cand.fam_name == self.fam_name } if !self.fam_name.blank?
+        #    @candidate.select! { |cand| cand.first_name == self.first_name  } if !self.first_name.blank?
+        #    @candidate.select! { |cand| cand.sec_name == self.sec_name  } if !self.sec_name.blank?
+        #    @candidate.select! { |cand| cand.ward == self.ward  } if !self.ward.blank?
+        #    if @candidate.size > 0
+        #        @candidate = @candidate.sort! { |cand1, cand2| cand1.updated_at <=> cand2.updated_at }[0]
+        #    else
+        #        @candidate = Candidate.create!( :fam_name => self.fam_name,
+        #                       :first_name => self.first_name,
+        #                       :sec_name => self.sec_name,
+        #                       :nomination_id => self.nomination_id,
+        #                       :org_id => self.org_id,
+        #                       :unit_id => self.unit_id,
+        #                       :depart => self.depart,
+        #                       :ward => self.ward )
+        #    end
+        #else
+        #    @candidate = Candidate.create!( :fam_name => self.fam_name,
+        #                       :first_name => self.first_name,
+        #                       :sec_name => self.sec_name,
+        #                       :nomination_id => self.nomination_id,
+        #                       :org_id => self.org_id,
+        #                       :unit_id => self.unit_id,
+        #                       :depart => self.depart,
+        #                       :ward => self.ward )
+        #end
         self.candidate_id = @candidate.id
     end
 end
