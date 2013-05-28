@@ -10,8 +10,7 @@
 //= require_tree .
 //= require bootstrap-modal
 
-var to_that_candidate, from_that_candidate, first_names;
-var baloon_complete = 0;
+var to_that_candidate, from_that_candidate, first_names, out = false;
 
 function moveVotes(from, to) {
     if (to && from !== to) {
@@ -36,19 +35,23 @@ function showComment(object, x, y) {
         success: function(data) { $("#comment").html(data); },
         complete: function() { 
             showBaloon(object, x, y); 
-            baloon_complete = 1;
         }
     });
 }
 
 function showBaloon(object, x, y) {
-    console.log("window height: " + $(document).height() + "\r\nbaloon height: " + $(".comment-baloon").height() + "\r\ny: " + y);
+    $("#comment").css({ 'top' : (-$(this).height()), 'left' : (-$(this).width) }).show();
+    console.log("document height: " + $(document).height() + "\r\nbaloon height: " + $(".comment-baloon").height() + "\r\ny: " + y);
     if ($(document).height() < ( $(".comment-baloon").height() + y )) { 
-        y = y - ( $(".comment-baloon").height() - 50 ) 
+        y = y - ( $(".comment-baloon").height() ) 
     };
-    $("#comment").css({ 'top' : y - 30, 'left' : x + 21 }).show();
     console.log(y);
     $("#comment").css({ 'top' : y - 30, 'left' : x + 21 }).show();
+    object.mouseout( function() {
+        out = true;
+        $("#comment").hide();
+        $("#comment .container-men").remove();
+    });
 }
 
 function makeDraggable() {
@@ -200,21 +203,21 @@ $(document).ready(function() {
     $("#comments-picker .modal-footer .btn").bind('click', function() { commentCopy() });
 
     $(".container-men div").each(function(){
-        var onman;
         $(this).mouseover( function(e) {
             var cursor_x = e.pageX;
             var cursor_y = e.pageY;
+            out = false;
             showComment($(this), cursor_x, cursor_y);
-            onman = 1;
-        } ).mouseout( function() {
+        } );
+        /*$(this).mouseout( function() {
             $("#comment").hide();
             $("#comment .container-men").remove();
-            onman = 0;
-        } );
-        /*$(this).mousemove(function(){ 
-            if (onman === 1) { 
-                $("#comment").show(); 
-            };
-        });*/
+        } ); */
+    });
+
+    $(this).mousemove(function(){ 
+        if ( out ) { 
+            $("#comment").hide(); 
+        };
     });
 })
