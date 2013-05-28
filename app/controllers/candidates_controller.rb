@@ -3,7 +3,7 @@ class CandidatesController < ApplicationController
 
     helper_method :sort_column, :sort_direction
 
-    caches_page :index
+    #caches_page :index
 
     def index
         @title = I18n.t('shared.common.candidates.title')
