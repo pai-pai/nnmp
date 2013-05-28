@@ -44,6 +44,7 @@ class VotesController < ApplicationController
     end
 
     def destroy
+        expire_action(:controller => '/candidates', :action => 'index')
         @vote = Vote.find(params[:id])
         @candidate = @vote.candidate_id
         @vote.destroy
