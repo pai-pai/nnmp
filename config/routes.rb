@@ -31,6 +31,8 @@ Nnmp::Application.routes.draw do
         match "move-votes" => "candidates#move_votes"
         get "candidates/get_to_edit"
         match "get-candidate-to-edit" => "candidates#get_to_edit"
+        get "pages/get_comment"
+        match "get-votes-comment" => "pages#get_comment"
 
         match "add-user" => "users#new", :as => "add_user"
 

@@ -23,3 +23,23 @@
         .votes-count, .actions { position: relative; bottom: 2em; }
     }
 }
+
+#comment {
+    position: absolute;
+    display: none;
+    top: 0;
+    left: 0;
+}
+
+.container-men div {
+    width: 17px;
+    height: 36px;
+    background: url(/images/man.gif) 0 0 no-repeat;
+    display: inline-block;
+    &:hover { background-position: 100% 0; }
+}
+
+.comment-baloon {
+    width: 400px;
+    background-color: #eee;
+}

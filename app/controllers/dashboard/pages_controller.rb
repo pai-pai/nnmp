@@ -7,7 +7,12 @@ class Dashboard::PagesController < ApplicationController
         @nominations = Nomination.order("name").all
     end
 
-    def orgs_stat
-        @title = I18n.t('shared.dashboard.stat.orgs.title')
+    def get_comment
+        vote = Vote.find(params[:vote_id])
+        if !vote.comment.blank?
+            render :partial => "vote", :locals => { :vote => vote }
+        else
+            render :text => ""
+        end
     end
 end

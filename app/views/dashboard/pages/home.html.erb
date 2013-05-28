@@ -7,10 +7,13 @@
                     <ul class="unstyled candidates">
                         <% nomination.top_candidates(5).each do |candidate| %>
                             <li class="candidate">
-                                <span class="c_name">
-                                    <%= link_to "#{candidate.fam_name} #{candidate.first_name} #{candidate.sec_name}", dashboard_candidate_path(candidate) %> 
-                                    <%= Vote.find_all_by_candidate_id(candidate.id).count %><br />
-                                </span>
+                                <%= link_to "#{candidate.fam_name} #{candidate.first_name} #{candidate.sec_name}", dashboard_candidate_path(candidate) %> 
+                                <%= Vote.find_all_by_candidate_id(candidate.id).count %><br />
+                                <div class="container-men">
+                                    <% Vote.find_all_by_candidate_id(candidate.id).each do |vote| %>
+                                        <div class="<%= vote.id %>"></div>
+                                    <% end %>
+                                </div>
                             </li>
                         <% end %>
                     </ul>
@@ -19,3 +22,4 @@
         </li>
     </ul>
 </div>
+<div id="comment"></div>

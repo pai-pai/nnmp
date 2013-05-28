@@ -13,21 +13,29 @@
 var to_that_candidate, from_that_candidate, first_names;
 
 function moveVotes(from, to) {
-    console.log("Move votes from " + from + " to " + to);
     if (to && from !== to) {
-        console.log("Ok, let's ajax this, baby! :D");
         $("#wait").show();
         $.ajax({
             dataType: "html",
             url: "/dashboard/move-votes?from=" + from + "&to=" + to,
             data: {},
             success: function(data) {
-                console.log("Yey! Success! ^_^"); 
                 $("#candidates-dash .container").html(data);
                 makeDraggable();
             }
         });
     };
+}
+
+function showComment(object) {
+    $.ajax({
+        dataType: "html",
+        url: "/dashboard/get-votes-comment?vote_id=" + object.attr("class"),
+        data: {},
+        success: function(data) {
+            $("#comment").html(data);
+        }
+    });
 }
 
 function makeDraggable() {
@@ -176,4 +184,17 @@ $(document).ready(function() {
     $("#new_vote .btn").click(function() { $("#wait").show(); });
 
     $("#comments-picker .modal-footer .btn").bind('click', function() { commentCopy() });
+
+    $(".container-men div").each(function(){
+        $(this).mouseenter( function(e) {
+            var x = e.clientX;
+            var y = e.clientY;
+            console.log("X: " + x + "px, Y: " + y + "px");
+            showComment($(this));
+            $("#comment").css({ 'top' : x, 'left' : y }).show();
+        } ).mouseleave( function() {
+            $("#comment").hide();
+            $("#comment .container-men").remove();
+        } );
+    });
 })
