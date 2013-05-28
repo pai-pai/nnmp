@@ -1,7 +1,5 @@
 <div class="comment-baloon">
-    <div class="text-right">
-        <%= l vote.created_at, :format => :short_date %> 
-    </div>
+    <div class="arrow"></div>
     <div>
         <p><%= raw vote.comment.gsub(/(\r\n)/, '</p><p>') %></p>
         <% if !vote.voter_fio.blank? || !vote.voter_phone.blank? %>

@@ -11,6 +11,7 @@
 //= require bootstrap-modal
 
 var to_that_candidate, from_that_candidate, first_names;
+var baloon_complete = 0;
 
 function moveVotes(from, to) {
     if (to && from !== to) {
@@ -27,15 +28,27 @@ function moveVotes(from, to) {
     };
 }
 
-function showComment(object) {
+function showComment(object, x, y) {
     $.ajax({
         dataType: "html",
         url: "/dashboard/get-votes-comment?vote_id=" + object.attr("class"),
         data: {},
-        success: function(data) {
-            $("#comment").html(data);
+        success: function(data) { $("#comment").html(data); },
+        complete: function() { 
+            showBaloon(object, x, y); 
+            baloon_complete = 1;
         }
     });
+}
+
+function showBaloon(object, x, y) {
+    console.log("window height: " + $(document).height() + "\r\nbaloon height: " + $(".comment-baloon").height() + "\r\ny: " + y);
+    if ($(document).height() < ( $(".comment-baloon").height() + y )) { 
+        y = y - ( $(".comment-baloon").height() - 50 ) 
+    };
+    $("#comment").css({ 'top' : y - 30, 'left' : x + 21 }).show();
+    console.log(y);
+    $("#comment").css({ 'top' : y - 30, 'left' : x + 21 }).show();
 }
 
 function makeDraggable() {
@@ -141,6 +154,7 @@ function resizeLeftColumn() {
 }
 
 $(document).ready(function() {
+    var window_height = $(window).height();
     resizeLeftColumn();
     $("#wait").hide();
     $(window).resize(function() { resizeLeftColumn(); });
@@ -186,15 +200,21 @@ $(document).ready(function() {
     $("#comments-picker .modal-footer .btn").bind('click', function() { commentCopy() });
 
     $(".container-men div").each(function(){
-        $(this).mouseenter( function(e) {
-            var x = e.clientX;
-            var y = e.clientY;
-            console.log("X: " + x + "px, Y: " + y + "px");
-            showComment($(this));
-            $("#comment").css({ 'top' : x, 'left' : y }).show();
-        } ).mouseleave( function() {
+        var onman;
+        $(this).mouseover( function(e) {
+            var cursor_x = e.pageX;
+            var cursor_y = e.pageY;
+            showComment($(this), cursor_x, cursor_y);
+            onman = 1;
+        } ).mouseout( function() {
             $("#comment").hide();
             $("#comment .container-men").remove();
+            onman = 0;
         } );
+        /*$(this).mousemove(function(){ 
+            if (onman === 1) { 
+                $("#comment").show(); 
+            };
+        });*/
     });
 })

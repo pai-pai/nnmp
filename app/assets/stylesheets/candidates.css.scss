@@ -40,6 +40,22 @@
 }
 
 .comment-baloon {
-    width: 400px;
-    background-color: #eee;
+    width: 500px;
+    background-color: #ffedbf;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    box-radius: 4px;
+    padding: 10px 20px 5px;
+    .arrow { 
+        border-color: transparent rgb(255, 237, 191) transparent transparent;
+        border-style: solid;
+        border-width: 10px;
+        display: block;
+        height: 0;
+        left: -20px;
+        top: 20px;
+        width: 0;
+        position: absolute;
+    }
+    span:before { content: '\2014 \00A0' }
 }
