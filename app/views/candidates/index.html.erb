@@ -1,3 +1,4 @@
+<% cache do %>
 <div class="container-fluid">
     <div class="row-fluid">
         <h3><%= @title %></h3>
@@ -20,33 +21,27 @@
             <p><%= t("shared.common.candidates.none") %></p>
         <% else %>
             <table class="table table-hover candidates">
-                <% cache do %>
-                    <thead>
-                        <tr>
-                            <th><%= sortable "fam_name", t("shared.common.candidates.fam_name") %></th>
-                            <th><%= sortable "first_name", t("shared.common.candidates.first_name") %></th>
-                            <th><%= sortable "sec_name", t("shared.common.candidates.sec_name") %></th>
-                            <th><%= sortable "nomination_id", t("shared.common.candidates.nomination_id") %></th>
-                            <th width="34%"><%= sortable "org_id", t("shared.common.candidates.org_id") %></th>
-                            <th class="votes-count"><%= sortable "votes", t("shared.common.candidates.count") %></th>
-                            <th class="vote-action"></th>
-                        </tr>
-                    </thead>
-                <% end %>
+                <thead>
+                    <tr>
+                        <th><%= sortable "fam_name", t("shared.common.candidates.fam_name") %></th>
+                        <th><%= sortable "first_name", t("shared.common.candidates.first_name") %></th>
+                        <th><%= sortable "sec_name", t("shared.common.candidates.sec_name") %></th>
+                        <th><%= sortable "nomination_id", t("shared.common.candidates.nomination_id") %></th>
+                        <th width="34%"><%= sortable "org_id", t("shared.common.candidates.org_id") %></th>
+                        <th class="votes-count"><%= sortable "votes", t("shared.common.candidates.count") %></th>
+                        <th class="vote-action"></th>
+                    </tr>
+                </thead>
                 <tbody>
                     <% @candidates.each do |candidate| %>
                         <tr>
-                            <% cache do %>
-                                <td><%= link_to candidate.fam_name, candidate_path(candidate.id) %></td>
-                                <td><%= link_to candidate.first_name, candidate_path(candidate.id) %></td>
-                                <td><%= link_to candidate.sec_name, candidate_path(candidate.id) %></td>
-                                <td><%= Nomination.find(candidate.nomination_id).name %></td>
-                                <td><%= Org.find(candidate.org_id).name %></td>
-                            <% end %>
+                            <td><%= link_to candidate.fam_name, candidate_path(candidate.id) %></td>
+                            <td><%= link_to candidate.first_name, candidate_path(candidate.id) %></td>
+                            <td><%= link_to candidate.sec_name, candidate_path(candidate.id) %></td>
+                            <td><%= Nomination.find(candidate.nomination_id).name %></td>
+                            <td><%= Org.find(candidate.org_id).name %></td>
                             <td class="votes-count"><%= candidate.votes.count %></td>
-                            <% cache do %>
-                                <td class="vote-action"><%= link_to t("shared.common.votes.new.link_html"), new_candidate_vote_path(candidate.id), { :class => "btn" } %></td>
-                            <% end %>
+                            <td class="vote-action"><%= link_to t("shared.common.votes.new.link_html"), new_candidate_vote_path(candidate.id), { :class => "btn" } %></td>
                         </tr>
                     <% end %>
                 </tbody>
@@ -57,3 +52,4 @@
        <%#= paginate @candidates %>
    </div>
 </div>
+<% end %>
