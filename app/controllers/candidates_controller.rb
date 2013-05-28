@@ -1,6 +1,6 @@
 class CandidatesController < ApplicationController
     before_filter :autorization_check
-    caches_action :index
+    caches_action :index, :layout => false
 
     helper_method :sort_column, :sort_direction
 
