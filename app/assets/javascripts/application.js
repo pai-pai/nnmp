@@ -41,12 +41,10 @@ function showComment(object, x, y) {
 
 function showBaloon(object, x, y) {
     $("#comment").css({ 'top' : (-$(this).height()), 'left' : (-$(this).width) }).show();
-    console.log("document height: " + $(document).scrollTop() + "\r\nbaloon height: " + $(".comment-baloon").height() + "\r\ny: " + y);
     if ($(document).scrollTop() < ( $(".comment-baloon").height() + y )) { 
         y = y - ( $(".comment-baloon").height() - 60 );
         $(".arrow").css( "top", $(".comment-baloon").height() - 30 );
     };
-    console.log(y);
     $("#comment").css({ 'top' : y - 30, 'left' : x + 5 }).show();
     object.mouseout( function() {
         out = true;
@@ -217,6 +215,7 @@ $(document).ready(function() {
     });
 
     $(this).mousemove(function(){ 
+        console.log( out );
         if ( out ) { 
             $("#comment").hide(); 
         };

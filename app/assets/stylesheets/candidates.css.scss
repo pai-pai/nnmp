@@ -38,11 +38,12 @@
         .under { height: 1px; width: 400px; border-bottom: 1px solid #e3e5d0; display: block; }
     }
     ul.candidates { overflow: hidden; }
+    .candidate strong a { font-size: 1.2em; text-decoration: underline; }
     .candidate .label.info { background-color: #e5e5e5; color: #666; font-weight: normal; text-shadow: none; }
 }
 
 .container-men {
-    padding: 0.3em 0 0.6em 0;
+    padding: 0.4em 0 0.8em 0;
     width: 400px;
     div {
         width: 16px;
