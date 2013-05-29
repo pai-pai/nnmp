@@ -14,14 +14,12 @@
 }
 
 .candidate-info { border-bottom: 1px solid #e5e5e5; }
-.candidate-votes { h4 { margin: 1em 0 0 0; } }
+.candidate-votes h4 { margin: 1em 0 0 0; }
 
 #candidates-dash .container {
     div.small { padding-top: 0.3em; }
     .badge { cursor: default; }
-    li { 
-        .votes-count, .actions { position: relative; bottom: 2em; }
-    }
+    li .votes-count, .actions { position: relative; bottom: 2em; }
 }
 
 #comment {
@@ -31,12 +29,31 @@
     left: 0;
 }
 
-.container-men div {
-    width: 17px;
-    height: 36px;
-    background: url(/images/man.gif) 0 0 no-repeat;
-    display: inline-block;
-    &:hover { background-position: 100% 0; }
+#main {
+    li.nomination {
+        h4 { margin-bottom: 0; }
+        .candidates {
+            margin-top: 0.4em;
+        }
+        .under { height: 1px; width: 400px; border-bottom: 1px solid #e3e5d0; display: block; }
+    }
+    ul.candidates { overflow: hidden; }
+    .candidate .label.info { background-color: #e5e5e5; color: #666; font-weight: normal; text-shadow: none; }
+}
+
+.container-men {
+    padding: 0.3em 0 0.6em 0;
+    width: 400px;
+    div {
+        width: 16px;
+        height: 32px;
+        display: inline-block;
+        background: url(/images/man.gif) -32px 0 no-repeat;
+        &.active { 
+            background-position: 0 0;   
+            &:hover { background-position: -16px 0; }
+        }
+    }
 }
 
 .comment-baloon {
@@ -46,13 +63,14 @@
     -moz-border-radius: 4px;
     box-radius: 4px;
     padding: 10px 20px 5px;
+    margin-left: 20px;
     .arrow { 
         border-color: transparent rgb(255, 237, 191) transparent transparent;
         border-style: solid;
         border-width: 10px;
         display: block;
         height: 0;
-        left: -20px;
+        left: 0px;
         top: 20px;
         width: 0;
         position: absolute;

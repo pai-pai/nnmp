@@ -30,7 +30,7 @@ function moveVotes(from, to) {
 function showComment(object, x, y) {
     $.ajax({
         dataType: "html",
-        url: "/dashboard/get-votes-comment?vote_id=" + object.attr("class"),
+        url: "/dashboard/get-votes-comment?vote_id=" + object.attr("id"),
         data: {},
         success: function(data) { $("#comment").html(data); },
         complete: function() { 
@@ -43,10 +43,10 @@ function showBaloon(object, x, y) {
     $("#comment").css({ 'top' : (-$(this).height()), 'left' : (-$(this).width) }).show();
     console.log("document height: " + $(document).height() + "\r\nbaloon height: " + $(".comment-baloon").height() + "\r\ny: " + y);
     if ($(document).height() < ( $(".comment-baloon").height() + y )) { 
-        y = y - ( $(".comment-baloon").height() ) 
+        y = y - ( $(".comment-baloon").height() - 50 ) 
     };
     console.log(y);
-    $("#comment").css({ 'top' : y - 30, 'left' : x + 21 }).show();
+    $("#comment").css({ 'top' : y - 30, 'left' : x + 5 }).show();
     object.mouseout( function() {
         out = true;
         $("#comment").hide();
