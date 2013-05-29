@@ -57,13 +57,14 @@
 }
 
 .comment-baloon {
-    width: 500px;
+    width: 450px;
     background-color: #ffedbf;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     box-radius: 4px;
     padding: 10px 20px 5px;
     margin-left: 20px;
+    font-size: 85%;
     .arrow { 
         border-color: transparent rgb(255, 237, 191) transparent transparent;
         border-style: solid;
