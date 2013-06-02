@@ -35,11 +35,15 @@
         .candidates {
             margin-top: 0.4em;
         }
-        .under { height: 1px; width: 400px; border-bottom: 1px solid #e3e5d0; display: block; }
+        .under { height: 1px; width: 74%; border-bottom: 1px solid #e3e5d0; display: block; }
     }
     ul.candidates { overflow: hidden; }
-    .candidate strong a { font-size: 1.2em; text-decoration: underline; }
-    .candidate .label.info { background-color: #e5e5e5; color: #666; font-weight: normal; text-shadow: none; }
+    .candidate { padding-bottom: 0.6em; }
+    .progress { 
+        width: 100%;
+        display: inline-block;
+        margin: 0;
+    }
 }
 
 .container-men {
@@ -49,7 +53,7 @@
         width: 16px;
         height: 32px;
         display: inline-block;
-        background: url(/images/man.gif) -32px 0 no-repeat;
+        background: url(/images/man3_2.png) -32px 0 no-repeat;
         &.active { 
             background-position: 0 0;   
             &:hover { background-position: -16px 0; }

@@ -1,0 +1,27 @@
+<div id="main" class="span12">
+    <ul class="unstyled nominations">
+        <li class="nomination">
+            <% @nominations.each do |nomination| %>
+                <% if !nomination.candidates.blank? %>
+                    <h4 class="n-name"><%= nomination.name %></h4>
+                    <span class="grey small"><%= t('shared.dashboard.results.all') %><%= nomination.candidates.count %></span>
+                    <ul class="unstyled candidates">
+                        <% nomination.top_candidates(5).each do |candidate| %>
+                            <li class="candidate">
+                            <strong><%= link_to "#{candidate.fam_name} #{candidate.first_name} #{candidate.sec_name}", dashboard_candidate_path(candidate) %></strong>
+                            <span class="label info"><%= t('shared.dashboard.results.all_votes') %><%= Vote.find_all_by_candidate_id(candidate.id).count %></span><br />
+                                <div class="container-men">
+                                    <% Vote.find_all_by_candidate_id(candidate.id).each do |vote| %>
+                                        <%= content_tag(:div, :class=> ( 'active' if !vote.comment.blank? ), :id => "#{vote.id}") do %><% end %>
+                                    <% end %>
+                                </div>
+                            </li>
+                        <% end %>
+                    </ul>
+                    <span class="under"></span>
+                <% end %>
+            <% end %>
+        </li>
+    </ul>
+</div>
+<div id="comment"></div>
