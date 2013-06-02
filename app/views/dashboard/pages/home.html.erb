@@ -1,4 +1,5 @@
-<div id="main" class="span12">
+<%= render "dashboard/shared/main_tabs" %>
+<div id="main" class="span12 tab-panel">
     <ul class="unstyled nominations">
         <li class="nomination">
             <% @nominations.each do |nomination| %>

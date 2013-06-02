@@ -8,19 +8,21 @@ class Nomination < ActiveRecord::Base
 
     def top_candidates( num )
         if !num.blank?
-            if num.is_a? Integer
-                Candidate.find_by_sql "SELECT c.id, c.fam_name, c.first_name, c.sec_name
+            num = 5 if !num.is_a? Integer
+            Candidate.find_by_sql "SELECT c.id, c.fam_name, c.first_name, c.sec_name
                                    FROM candidates c
                                    LEFT JOIN votes v ON v.candidate_id=c.id
                                    WHERE c.nomination_id=#{self.id}
                                    GROUP BY c.id
                                    ORDER BY COUNT(v.id) DESC
                                    LIMIT #{num}"
-            else
-                Candidate.find_by_nomination_id(self.id).limit(5)
-            end
         else
-            Candidate.find_by_nomination_id(self.id).limit(5)
+            Candidate.find_by_sql "SELECT c.id, c.fam_name, c.first_name, c.sec_name
+                                   FROM candidates c
+                                   LEFT JOIN votes v ON v.candidate_id=c.id
+                                   WHERE c.nomination_id=#{self.id}
+                                   GROUP BY c.id
+                                   ORDER BY COUNT(v.id) DESC"
         end
     end
 end

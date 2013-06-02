@@ -1,0 +1,28 @@
+<%= render "dashboard/shared/main_tabs" %>
+<div id="main" class="span12 tab-panel">
+    <ul class="unstyled orgs">
+        <% @orgs.each do |org| %>
+            <% if !org.candidates.blank? %>
+                <li class="org">
+                    <h4 class="n-name"><%= org.name %></h4>
+                    <span class="grey small"><%= t('shared.dashboard.results.all_org') %><%= org.candidates.count %></span>
+                    <table width="90%">
+                        <tbody>
+                            <% org.top_candidates(5).each do |candidate| %>
+                                <tr>
+                                    <td align="right" width="40%" style="padding-right: 5px;" ><%= link_to "#{candidate.fam_name} #{candidate.first_name} #{candidate.sec_name}", dashboard_candidate_path(candidate) %></td>
+                                    <td width="40%">
+                                        <div class="progress">
+                                            <div class="bar" style="width: <%= (Vote.find_all_by_candidate_id(candidate.id).count.to_f/Vote.find_all_by_candidate_id(org.top_candidates(5)[0].id).count.to_f*100) %>%;"></div>
+                                        </div>
+                                    </td>
+                                    <td valign="middle" style="padding-left: 5px;"><%= Vote.find_all_by_candidate_id(candidate.id).count %></td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                </li>
+            <% end %>
+        <% end %>
+    </ul>
+</div>

@@ -7,6 +7,10 @@ class Dashboard::PagesController < ApplicationController
         @nominations = Nomination.order("name").all
     end
 
+    def home_orgs
+        @orgs = Org.order("id").all
+    end
+
     def get_comment
         vote = Vote.find(params[:vote_id])
         if !vote.comment.blank?

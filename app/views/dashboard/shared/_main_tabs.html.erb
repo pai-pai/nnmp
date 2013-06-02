@@ -1,0 +1,9 @@
+<h4><%= t('shared.dashboard.common.results') %></h4>
+<ul class="nav nav-tabs main-tabs">
+    <%= content_tag :li, :class => ('active' if params[:action].eql?("home")) do %>
+        <%= link_to t('shared.dashboard.menu.nominations_html'), dashboard_home_path %>
+    <% end %>
+    <%= content_tag :li, :class => ('active' if params[:action].include?("home_orgs")) do %>
+        <%= link_to t('shared.orgs.common.title_html'), dashboard_home_orgs_path %>
+    <% end %>
+</ul>

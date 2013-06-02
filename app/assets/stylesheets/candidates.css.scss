@@ -30,12 +30,16 @@
 }
 
 #main {
+    padding: 10px;
     li.nomination {
         h4 { margin-bottom: 0; }
         .candidates {
             margin-top: 0.4em;
         }
         .under { height: 1px; width: 74%; border-bottom: 1px solid #e3e5d0; display: block; }
+    }
+    li.org { 
+        h4 { margin-bottom: 0; }
     }
     ul.candidates { overflow: hidden; }
     .candidate { padding-bottom: 0.6em; }
@@ -44,6 +48,10 @@
         display: inline-block;
         margin: 0;
     }
+}
+.nav-tabs.main-tabs > .active > a, .nav-tabs.main-tabs > .active > a:hover, .nav-tabs.main-tabs > .active > a:focus {
+    background-color: #e6f1f6;
+    border-bottom: #ddd;
 }
 
 .container-men {

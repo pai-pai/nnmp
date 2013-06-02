@@ -36,6 +36,8 @@ Nnmp::Application.routes.draw do
 
         match "add-user" => "users#new", :as => "add_user"
 
+        match "home-orgs" => "pages#home_orgs", :as => "home_orgs"
+
         match "/" => "pages#home", :as => "home"
         match "orgs-stat" => "pages#orgs_stat", :as => "orgs_stat"
     end
