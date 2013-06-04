@@ -72,19 +72,25 @@
                         <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.count - 1 %>"><Data ss:Type="String"><%= Org.find(cand.org_id).name %></Data></Cell>
                         <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.count - 1 %>"><Data ss:Type="Number"><%= cand.votes.count %></Data></Cell>
                         <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= count_v %></Data></Cell>
-                        <Cell ss:StyleID="t1"><Data ss:Type="String"><%= cand.votes[0].comment %></Data></Cell>
-                        <Cell ss:StyleID="t1"><Data ss:Type="String"><%= cand.votes[0].voter_fio %></Data></Cell>
-                        <Cell ss:StyleID="t1"><Data ss:Type="String"><%= cand.votes[0].voter_phone %></Data></Cell>
+                        <% if !cand.votes.blank? %>
+                            <Cell ss:StyleID="t1"><Data ss:Type="String"><%= cand.votes[0].comment %></Data></Cell>
+                            <Cell ss:StyleID="t1"><Data ss:Type="String"><%= cand.votes[0].voter_fio %></Data></Cell>
+                            <Cell ss:StyleID="t1"><Data ss:Type="String"><%= cand.votes[0].voter_phone %></Data></Cell>
+                        <% else %>
+                            <Cell ss:StyleID="t2" ss:MergeAcross="2"><Data ss:Type="String"><%= t('shared.excel.nominations.no_one_vote') %></Data></Cell>                        
+                        <% end %>
                     </Row>
                     <% count_c = count_c + 1 %>
-                    <% cand.votes.each do |vote| %>
-                        <% if vote.id != cand.votes[0].id %>
-                            <Row>
-                                <Cell ss:Index="5" ss:StyleID="t1"><Data ss:Type="Number"><%= count_v = count_v + 1 %></Data></Cell>
-                                <Cell ss:Index="6" ss:StyleID="t1"><Data ss:Type="String"><%= vote.comment %></Data></Cell>
-                                <Cell ss:Index="7" ss:StyleID="t1"><Data ss:Type="String"><%= vote.voter_fio %></Data></Cell>
-                                <Cell ss:Index="8" ss:StyleID="t1"><Data ss:Type="String"><%= vote.voter_phone %></Data></Cell>
-                            </Row>
+                    <% if !cand.votes.blank? %>
+                        <% cand.votes.each do |vote| %>
+                            <% if vote.id != cand.votes[0].id %>
+                                <Row>
+                                    <Cell ss:Index="5" ss:StyleID="t1"><Data ss:Type="Number"><%= count_v = count_v + 1 %></Data></Cell>
+                                    <Cell ss:Index="6" ss:StyleID="t1"><Data ss:Type="String"><%= vote.comment %></Data></Cell>
+                                    <Cell ss:Index="7" ss:StyleID="t1"><Data ss:Type="String"><%= vote.voter_fio %></Data></Cell>
+                                    <Cell ss:Index="8" ss:StyleID="t1"><Data ss:Type="String"><%= vote.voter_phone %></Data></Cell>
+                                </Row>
+                            <% end %>
                         <% end %>
                     <% end %>
                 <% end %>
