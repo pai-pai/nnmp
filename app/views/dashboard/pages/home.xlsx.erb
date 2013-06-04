@@ -38,7 +38,7 @@
             <Font ss:Bold="1"/>
         </Style>
     </Styles>
-    <Worksheet ss:Name="<%= t('shared.dashboard.excel.book_names.nominations') %>">
+    <Worksheet ss:Name="<%= t('shared.excel.book_names.nominations') %>">
         <Table>
             <Column ss:AutoFitWidth="0" ss:Width="37.5" />
             <Column ss:AutoFitWidth="0" ss:Width="225" />
@@ -50,27 +50,43 @@
             <Column ss:AutoFitWidth="0" ss:Width="109.5" />
 
             <Row>
-                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_01_html') %></Data></Cell>
-                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_02') %></Data></Cell>
-                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_03') %></Data></Cell>
-                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_04') %></Data></Cell>
-                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_05') %></Data></Cell>
-                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_06') %></Data></Cell>
-                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_07') %></Data></Cell>
-                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_08') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.excel.nominations.c_01_html') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.excel.nominations.c_02') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.excel.nominations.c_03') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.excel.nominations.c_04') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.excel.nominations.c_05') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.excel.nominations.c_06') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.excel.nominations.c_07') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.excel.nominations.c_08') %></Data></Cell>
             </Row>
             <% @nominations.each do |nom| %>
                 <Row>
-                    <Cell ss:StyleID="t1" ss:MergeAcross="7"><Data ss:Type="Number"><%= nom.name %></Data></Cell>
+                    <Cell ss:StyleID="t2" ss:MergeAcross="7"><Data ss:Type="String"><%= nom.name %></Data></Cell>
                 </Row>
-                <% nomination.top_candidates(nomination.candidates.count).each do |cand| %>
-                    <% count_c = 1 %>
+                <% count_c = 1 %>
+                <% count_v = 1 %>
+                <% nom.top_candidates(nom.candidates.count).each do |cand| %>
                     <Row>
-                        <Cell ss:StyleID="t1" ss:MergeAcross="7"><Data ss:Type="Number"><%= count_c %></Data></Cell>
-                        <Cell ss:StyleID="t1" ss:MergeAcross="7"><Data ss:Type="String"><%= cand.fam_name %> <%= cand.first_name %> <%= cand.sec_name %></Data></Cell>
-                        <Cell ss:StyleID="t1" ss:MergeAcross="7"><Data ss:Type="String"><%= cand.org.name %></Data></Cell>
+                        <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.count - 1 %>"><Data ss:Type="Number"><%= count_c %></Data></Cell>
+                        <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.count - 1 %>"><Data ss:Type="String"><%= cand.fam_name %> <%= cand.first_name %> <%= cand.sec_name %></Data></Cell>
+                        <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.count - 1 %>"><Data ss:Type="String"><%= Org.find(cand.org_id).name %></Data></Cell>
+                        <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.count - 1 %>"><Data ss:Type="Number"><%= cand.votes.count %></Data></Cell>
+                        <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= count_v %></Data></Cell>
+                        <Cell ss:StyleID="t1"><Data ss:Type="String"><%= cand.votes[0].comment %></Data></Cell>
+                        <Cell ss:StyleID="t1"><Data ss:Type="String"><%= cand.votes[0].voter_fio %></Data></Cell>
+                        <Cell ss:StyleID="t1"><Data ss:Type="String"><%= cand.votes[0].voter_phone %></Data></Cell>
                     </Row>
                     <% count_c = count_c + 1 %>
+                    <% cand.votes.each do |vote| %>
+                        <% if vote.id != cand.votes[0].id %>
+                            <Row>
+                                <Cell ss:Index="5" ss:StyleID="t1"><Data ss:Type="Number"><%= count_v = count_v + 1 %></Data></Cell>
+                                <Cell ss:Index="6" ss:StyleID="t1"><Data ss:Type="String"><%= vote.comment %></Data></Cell>
+                                <Cell ss:Index="7" ss:StyleID="t1"><Data ss:Type="String"><%= vote.voter_fio %></Data></Cell>
+                                <Cell ss:Index="8" ss:StyleID="t1"><Data ss:Type="String"><%= vote.voter_phone %></Data></Cell>
+                            </Row>
+                        <% end %>
+                    <% end %>
                 <% end %>
             <% end %>
         </Table>

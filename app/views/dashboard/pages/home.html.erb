@@ -1,5 +1,8 @@
 <%= render "dashboard/shared/main_tabs" %>
 <div id="main" class="span12 tab-panel">
+    <p class="text-right">
+        <%= link_to "excel", { :controller => "pages", :action => "home", :format => :xlsx } %>
+    </p>
     <ul class="unstyled nominations">
         <li class="nomination">
             <% @nominations.each do |nomination| %>
