@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook
+    xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+    xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:x="urn:schemas-microsoft-com:office:excel"
+    xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+    xmlns:html="http://www.w3.org/TR/REC-html40">
+    <Styles>
+        <Style ss:ID="Default">
+            <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+        </Style>
+        <Style ss:ID="t1">
+            <Borders>
+                <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+            </Borders>
+        </Style>
+        <Style ss:ID="t2">
+            <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+            <Borders>
+                <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+            </Borders>
+        </Style>
+        <Style ss:ID="th1">
+            <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+            <Borders>
+                <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+            </Borders>
+            <Font ss:Bold="1"/>
+        </Style>
+    </Styles>
+    <Worksheet ss:Name="<%= t('shared.dashboard.excel.book_names.nominations') %>">
+        <Table>
+            <Column ss:AutoFitWidth="0" ss:Width="37.5" />
+            <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Column ss:AutoFitWidth="0" ss:Width="42" />
+            <Column ss:AutoFitWidth="0" ss:Width="42.75" />
+            <Column ss:AutoFitWidth="0" ss:Width="319.5" />
+            <Column ss:AutoFitWidth="0" ss:Width="159" />
+            <Column ss:AutoFitWidth="0" ss:Width="109.5" />
+
+            <Row>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_01_html') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_02') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_03') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_04') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_05') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_06') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_07') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.dashboard.excel.nominations.c_08') %></Data></Cell>
+            </Row>
+            <% @nominations.each do |nom| %>
+                <Row>
+                    <Cell ss:StyleID="t1" ss:MergeAcross="7"><Data ss:Type="Number"><%= nom.name %></Data></Cell>
+                </Row>
+                <% nomination.top_candidates(nomination.candidates.count).each do |cand| %>
+                    <% count_c = 1 %>
+                    <Row>
+                        <Cell ss:StyleID="t1" ss:MergeAcross="7"><Data ss:Type="Number"><%= count_c %></Data></Cell>
+                        <Cell ss:StyleID="t1" ss:MergeAcross="7"><Data ss:Type="String"><%= cand.fam_name %> <%= cand.first_name %> <%= cand.sec_name %></Data></Cell>
+                        <Cell ss:StyleID="t1" ss:MergeAcross="7"><Data ss:Type="String"><%= cand.org.name %></Data></Cell>
+                    </Row>
+                    <% count_c = count_c + 1 %>
+                <% end %>
+            <% end %>
+        </Table>
+    </Worksheet>
+</Workbook>

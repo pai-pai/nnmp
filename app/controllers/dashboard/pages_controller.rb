@@ -5,6 +5,10 @@ class Dashboard::PagesController < ApplicationController
 
     def home
         @nominations = Nomination.order("name").all
+        respond_to do |format|
+            format.html
+            format.xlsx { response.headers['Content-Disposition'] = "attachment; filename=\"#{t('shared.dashboard.excel.book_names.nominations')}.xlsx\"" }
+        end
     end
 
     def home_orgs

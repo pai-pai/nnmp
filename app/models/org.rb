@@ -7,7 +7,7 @@ class Org < ActiveRecord::Base
     has_many :candidates
     belongs_to :area
 
-    def top_candidates( num )
+    def top_candidates( *num )
         if !num.blank?
             num = 5 if !num.is_a? Integer
             Candidate.find_by_sql "SELECT c.id, c.fam_name, c.first_name, c.sec_name
