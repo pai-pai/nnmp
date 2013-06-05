@@ -69,10 +69,10 @@
                 </Row>
                 <% nom.top_candidates(nom.candidates.count).each do |cand| %>
                     <Row>
-                        <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.count - 1 %>"><Data ss:Type="Number"><%= nom.top_candidates(nom.candidates.count).index(cand) + 1 %></Data></Cell>
-                        <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.count - 1 %>"><Data ss:Type="String"><%= cand.fam_name %> <%= cand.first_name %> <%= cand.sec_name %></Data></Cell>
-                        <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.count - 1 %>"><Data ss:Type="String"><%= Org.find(cand.org_id).name %></Data></Cell>
-                        <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.count - 1 %>"><Data ss:Type="Number"><%= cand.votes.count %></Data></Cell>
+                        <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.blank? 0 : cand.votes.count - 1 %>"><Data ss:Type="Number"><%= nom.top_candidates(nom.candidates.count).index(cand) + 1 %></Data></Cell>
+                        <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.blank? 0 : cand.votes.count - 1 %>"><Data ss:Type="String"><%= cand.fam_name %> <%= cand.first_name %> <%= cand.sec_name %></Data></Cell>
+                        <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.blank? 0 : cand.votes.count - 1 %>"><Data ss:Type="String"><%= Org.find(cand.org_id).name %></Data></Cell>
+                        <Cell ss:StyleID="t1" ss:MergeDown="<%= cand.votes.blank? 0 : cand.votes.count - 1 %>"><Data ss:Type="Number"><%= cand.votes.count %></Data></Cell>
                         <% if !cand.votes.blank? %>
                             <Cell ss:StyleID="t1"><Data ss:Type="Number">1</Data></Cell>
                             <Cell ss:StyleID="t1"><Data ss:Type="String"><%= cand.votes[0].comment %></Data></Cell>
