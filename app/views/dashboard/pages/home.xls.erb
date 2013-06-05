@@ -79,7 +79,7 @@
                             <Cell ss:StyleID="t1"><Data ss:Type="String"><%= cand.votes[0].voter_fio %></Data></Cell>
                             <Cell ss:StyleID="t1"><Data ss:Type="String"><%= cand.votes[0].voter_phone %></Data></Cell>
                         <% else %>
-                            <Cell ss:StyleID="t2" ss:MergeAcross="2"><Data ss:Type="String"><%= t('shared.excel.nominations.no_one_vote') %></Data></Cell>                        
+                            <Cell ss:StyleID="t2" ss:MergeAcross="3"><Data ss:Type="String"><%= t('shared.excel.nominations.no_one_vote') %></Data></Cell>                        
                         <% end %>
                     </Row>
                     <% if !cand.votes.blank? %>

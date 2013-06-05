@@ -17,6 +17,7 @@ class VotesController < ApplicationController
 
     def create
         expire_action(:controller => '/candidates', :action => 'index')
+        expire_action(:controller => '/dashboard/pages', :action => 'home')
         if params[:candidate_id]
             @candidate = Candidate.find(params[:candidate_id])
             @vote = @candidate.votes.build(params[:vote].merge({ :user_id => current_user.id }))
