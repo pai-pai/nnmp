@@ -7,7 +7,7 @@ class Dashboard::PagesController < ApplicationController
         @nominations = Nomination.order("name").all
         respond_to do |format|
             format.html
-            format.xlsx { response.headers['Content-Disposition'] = "attachment; filename=\"#{t('shared.excel.book_names.nominations')}.xlsx\"" }
+            format.xls { response.headers['Content-Disposition'] = "attachment; filename=\"#{t('shared.excel.book_names.nominations')}.xls\"" }
         end
     end
 
