@@ -7,7 +7,7 @@ class Dashboard::PagesController < ApplicationController
     def home
         #expire_action(:controller => '/dashboard/pages', :action => 'home')
         @nominations = Nomination.order("name").all
-        @top_now = params[:top].to_i || 10
+        @top_now = params[:top].to_i || 10 if !params[:top].blank?
         @top = @top_now == 10 ? 5 : 10
         respond_to do |format|
             format.html
