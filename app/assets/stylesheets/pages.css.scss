@@ -164,11 +164,9 @@ html, body {
 }
 
 #main {
-        
-}
-
-.actions {
-    font-size: 85%;
-    color: #0088cc;
-    button { border: none; background: none; font-size: 1em; padding: 0; color: #0088cc; &:hover { color: #005580; text-decoration: underline; } }
+    .actions {
+        font-size: 85%;
+        color: #0088cc;
+        button { border: none; background: none; font-size: 1em; padding: 0; color: #0088cc; &:hover { color: #005580; text-decoration: underline; } }
+    }
 }
