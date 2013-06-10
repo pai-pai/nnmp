@@ -293,6 +293,8 @@ ru:
                 edit_link: "Изменить" 
                 destroy_link_html: "Удалить"
                 results: Результаты голосования
+                top: ! 'Показывать по %{numb} кандидатов в номинации'
+                excel_export: Экспорт в Excel
             menu:
                 home: Главная
                 nominations: Номинации
