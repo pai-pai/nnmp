@@ -1,11 +1,11 @@
 class Dashboard::PagesController < ApplicationController
     before_filter :autorization_check
-    caches_action :home, :layout => false
+    #caches_action :home, :layout => false
 
     layout "dashboard"
 
     def home
-        expire_action(:controller => '/dashboard/pages', :action => 'home')
+        #expire_action(:controller => '/dashboard/pages', :action => 'home')
         @nominations = Nomination.order("name").all
         @top_now = params[:top].to_i || 10
         @top = @top_now == 10 ? 5 : 10
