@@ -7,8 +7,15 @@ class Dashboard::PagesController < ApplicationController
     def home
         #expire_action(:controller => '/dashboard/pages', :action => 'home')
         @nominations = Nomination.order("name").all
-        @top_now = params[:top].to_i || 10 if !params[:top].blank?
-        @top = @top_now == 10 ? 5 : 10
+        if !params[:top].blank?
+            @top_now = params[:top].to_i
+            @top_text = I18n.t('shared.dashboard.common.top_all')
+        else
+            @top = 10
+            @top_text = I18n.t('shared.dashboard.common.top_text') + @top.to_s
+        end
+        #@top_now = params[:top].to_i || 10 if !params[:top].blank?
+        #@top = @top_now == 10 ? nil : 10
         respond_to do |format|
             format.html
             format.xls { response.headers['Content-Disposition'] = "attachment; filename=\"#{t('shared.excel.book_names.nominations')}.xls\"" }

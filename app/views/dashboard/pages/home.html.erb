@@ -1,7 +1,7 @@
 <%= render "dashboard/shared/main_tabs" %>
 <div id="main" class="span12 tab-panel">
     <div class="text-right actions">
-        <%= link_to t('shared.dashboard.common.top', :numb => @top), { :controller => "pages", :action => "home", :top => @top } %> | 
+        <%= link_to t('shared.dashboard.common.top', :text => @top_text), { :controller => "pages", :action => "home", :top => @top } %> | 
         <%= link_to t("shared.dashboard.common.excel_export"), { :controller => "pages", :action => "home", :format => :xls } %>
     </div>
     <ul class="unstyled nominations">
