@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430155822) do
+ActiveRecord::Schema.define(:version => 20140407181119) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -39,15 +39,17 @@ ActiveRecord::Schema.define(:version => 20130430155822) do
   create_table "nominations", :force => true do |t|
     t.string   "name"
     t.string   "desc"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",     :default => true
   end
 
   create_table "orgs", :force => true do |t|
     t.string   "name"
     t.integer  "area_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",     :default => true
   end
 
   add_index "orgs", ["area_id"], :name => "index_orgs_on_area_id"
@@ -81,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20130430155822) do
     t.string   "voter_phone"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.integer  "measures"
   end
 
   add_index "votes", ["candidate_id"], :name => "index_votes_on_candidate_id"

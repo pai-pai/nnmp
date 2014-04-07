@@ -1,5 +1,18 @@
 class Vote < ActiveRecord::Base
-    attr_accessible :comment, :voter_fio, :voter_phone, :user_id, :fam_name, :first_name, :sec_name, :ward, :depart, :org_id, :unit_id, :nomination_id, :candidate_id
+    attr_accessible :comment,
+                    :voter_fio,
+                    :voter_phone,
+                    :user_id,
+                    :fam_name,
+                    :first_name,
+                    :sec_name,
+                    :ward,
+                    :depart,
+                    :org_id,
+                    :unit_id,
+                    :nomination_id,
+                    :candidate_id,
+                    :measures
 
     validates :org_id, :presence => :true, :if => Proc.new { |c| c.unit_id.blank? }, :on => :create
     validates_presence_of :nomination_id, :on => :create
@@ -23,6 +36,11 @@ class Vote < ActiveRecord::Base
 
     before_create :add_org_id
     before_create :add_or_create_and_add_candidate_id
+
+    MEASURES = [
+        [I18n.t("shared.common.votes.measures.kindness"), 1],
+        [I18n.t("shared.common.votes.measures.devotion"), 2]
+    ]
 
     #
     def fam_name

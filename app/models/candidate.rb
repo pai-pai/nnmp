@@ -1,5 +1,13 @@
 class Candidate < ActiveRecord::Base
-    attr_accessible :depart, :fam_name, :first_name, :sec_name, :ward, :org_id, :unit_id, :nomination_id
+    attr_accessible :depart,
+                    :fam_name,
+                    :first_name,
+                    :measures,
+                    :nomination_id,
+                    :org_id,
+                    :sec_name,
+                    :unit_id,
+                    :ward 
     cattr_accessor :offset, :limit
 
     belongs_to :nomination
@@ -7,7 +15,6 @@ class Candidate < ActiveRecord::Base
     belongs_to :unit
 
     has_many :votes, :dependent => :destroy
-
 
     def paginate( page, per_page )
         self.offset = page
