@@ -63,6 +63,13 @@
     <hr />
 
     <div class="control-group">
+        <%= label_tag t("shared.common.votes.measures.title") %>
+        <%= f.select(:measures, Vote::MEASURES, { multiple: true, size: 2 }) %>
+    </div>
+
+    <hr />
+
+    <div class="control-group">
     <%= t("shared.common.votes.comment_html") %><br />
         <%= f.text_area :comment, :rows => 10, :cols => 40 %>
     </div>
