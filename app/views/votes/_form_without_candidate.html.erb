@@ -53,7 +53,7 @@
 
     <div class="control-group">
         <%= label_tag t("shared.common.votes.measures.title") %>
-        <%= f.select(:measures, Vote::MEASURES, { multiple: true, size: 2 }) %>
+        <%= f.select(:measures, Vote::MEASURES, { multiple: true, size: 2, include_blank: true }) %>
     </div>
 
     <hr />
