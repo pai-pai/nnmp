@@ -26,12 +26,6 @@ class Candidate < ActiveRecord::Base
     end
 
     def self.get_current_year_voted()
-        self.joins("LEFT JOIN votes ON votes.candidate_id = candidates.id").where("votes.updated_at >= '#{Time.now.beginning_of_year}'").select("candidates.id,
-                                               candidates.fam_name,
-                                               candidates.first_name,
-                                               candidates.sec_name,
-                                               candidates.nomination_id,
-                                               candidates.org_id,
-                                               count(votes.id)")
+        self.joins("LEFT JOIN votes ON votes.candidate_id = candidates.id").where("votes.updated_at >= '#{Time.now.beginning_of_year}'").all
     end
 end
