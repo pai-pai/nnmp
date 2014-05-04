@@ -8,9 +8,9 @@ class CandidatesController < ApplicationController
 
     def index
         @title = I18n.t('shared.common.candidates.title')
-        @candidates = Candidate.where("updated_at >= ?", Time.now.beginning_of_year)
-                               .order(:fam_name, :first_name, :sec_name, :org_id)
-                               .all()
+        @candidates = Candidate.get_current_year_voted #Candidate.where("updated_at >= ?", Time.now.beginning_of_year)
+        #                       .order(:fam_name, :first_name, :sec_name, :org_id)
+        #                       .all()
         #if !params[:search].blank?
         #    @search_phrase = params[:search].scan(/\S+/)
         #    tmp = []
