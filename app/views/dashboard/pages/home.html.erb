@@ -18,7 +18,7 @@
                                     <td width="40%">
                                         <div class="progress">
                                             <div class="bar" style="width: 
-                                                <% if candidate.votes_count_this_year != 0 %><%= nomination.top_candidates(@top_now)[0].votes_count_this_year/candidate.votes_count_this_year*100 %><% else %>0<% end %>%;"></div>
+                                                <% if candidate.votes_count_this_year != 0 %><%= nomination.top_candidates(@top_now)[0].votes_count_this_year.to_i/candidate.votes_count_this_year.to_i*100 %><% else %>0<% end %>%;"></div>
                                         </div>
                                     </td>
                                     <td valign="middle" style="padding-left: 5px;"><%= candidate.votes_count_this_year %></td>
