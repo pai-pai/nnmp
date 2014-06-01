@@ -47,7 +47,7 @@ class Dashboard::CandidatesController < ApplicationController
                 vote.update_attributes( :candidate_id => @to_candidate.id )
             end
         end
-        render :partial => "candidates", :locals => { :candidates => Candidate.order("fam_name, first_name, sec_name, id").all }
+        render :partial => "candidates", :locals => { :candidates => Candidate.get_current_year_voted.order("fam_name, first_name, sec_name, id") }
     end
 
     def destroy

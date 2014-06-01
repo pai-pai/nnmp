@@ -19,8 +19,7 @@ class Candidate < ActiveRecord::Base
     def paginate(page, per_page)
         self.offset = page
         self.limit = per_page
-        self.find_by_sql "SELECT c.id, c.fam_name, c.first_name, c.sec_name, c.nomination_id, c.org_id
-                          FROM candidates c
+        self.find_by_sql "SELECT * FROM candidates c
                           LIMIT #{per_page}
                           OFFSET #{(page - 1) * per_page}"
     end

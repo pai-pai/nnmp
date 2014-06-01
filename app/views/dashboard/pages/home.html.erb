@@ -9,7 +9,7 @@
             <% @nominations.each do |nomination| %>
                 <% if !nomination.candidates.blank? %>
                     <h4 class="n-name"><%= nomination.name %></h4>
-                    <span class="grey small"><%= t('shared.dashboard.results.all') %><%= nomination.candidates.count %></span>
+                    <span class="grey small"><%= t('shared.dashboard.results.all') %><%= nomination.candidates.get_current_year_voted.count %></span>
                     <table width="90%">
                         <tbody>
                             <% nomination.top_candidates(@top_now).each do |candidate| %>
@@ -17,10 +17,11 @@
                                     <td align="right" width="40%" style="padding-right: 5px;" ><%= link_to "#{candidate.fam_name} #{candidate.first_name} #{candidate.sec_name}", dashboard_candidate_path(candidate) %></td>
                                     <td width="40%">
                                         <div class="progress">
-                                            <div class="bar" style="width: <%= (Vote.find_all_by_candidate_id(candidate.id).count.to_f/Vote.find_all_by_candidate_id(nomination.top_candidates(@top_now)[0].id).count.to_f*100) %>%;"></div>
+                                            <div class="bar" style="width: 
+                                                <% if candidate.votes_count_this_year != 0 %><%= nomination.top_candidates(@top_now)[0].votes_count_this_year/candidate.votes_count_this_year*100 %><% else %>0<% end %>%;"></div>
                                         </div>
                                     </td>
-                                    <td valign="middle" style="padding-left: 5px;"><%= Vote.find_all_by_candidate_id(candidate.id).count %></td>
+                                    <td valign="middle" style="padding-left: 5px;"><%= candidate.votes_count_this_year %></td>
                                 </tr>
                             <% end %>
                         </tbody>
