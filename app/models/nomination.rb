@@ -7,11 +7,7 @@ class Nomination < ActiveRecord::Base
     has_many :candidates, :dependent => :restrict
 
     def top_candidates(num)
-        limit = num
-        if num.blank? or !num.is_a? Integer
-            limit = 5
-        end
-        self.candidates.select(
+        candidates = self.candidates.select(
             "candidates.id, candidates.fam_name,
             candidates.first_name, candidates.sec_name,
             candidates.org_id,
@@ -22,7 +18,11 @@ class Nomination < ActiveRecord::Base
             joins(:votes).
             where("votes.updated_at >= '#{Time.now.beginning_of_year}'").
             group("candidates.id").
-            order("votes_count DESC").
-            limit(limit)
+            order("votes_count DESC")
+        limit = num
+        if num.blank? or !num.is_a? Integer
+            candidates = candidates.limit(limit)
+        end
+        return candidates
     end
 end

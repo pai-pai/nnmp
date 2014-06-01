@@ -4,6 +4,7 @@
         <%= link_to t('shared.dashboard.common.top', :text => @top_text), { :controller => "pages", :action => "home", :top => @top } %> | 
         <%= link_to t("shared.dashboard.common.excel_export"), { :controller => "pages", :action => "home", :format => :xls } %>
     </div>
+    <p><%= @top_now %></p>
     <ul class="unstyled nominations">
         <li class="nomination">
             <% @nominations.each do |nomination| %>
