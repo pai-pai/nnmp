@@ -17,8 +17,12 @@
                                     <td align="right" width="40%" style="padding-right: 5px;" ><%= link_to "#{candidate.fam_name} #{candidate.first_name} #{candidate.sec_name}", dashboard_candidate_path(candidate) %></td>
                                     <td width="40%">
                                         <div class="progress">
-                                            <div class="bar" style="width: 
-                                                <% if candidate.votes_count_this_year != 0 %><%= nomination.top_candidates(@top_now)[0].votes_count_this_year.to_i/candidate.votes_count_this_year.to_i*100 %><% else %>0<% end %>%;"></div>
+                                            <% if candidate.votes_count_this_year != 0 %>
+                                                <div class="bar" style="width: 
+                                                <%= candidate.votes_count_this_year.to_f/nomination.top_candidates(@top_now)[0].votes_count_this_year.to_f*100 %>%;"></div>
+                                            <% else %>
+                                                <div class="bar" style="width: 0%;"></div>
+                                            <% end %>
                                         </div>
                                     </td>
                                     <td valign="middle" style="padding-left: 5px;"><%= candidate.votes_count_this_year %></td>
