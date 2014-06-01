@@ -6,7 +6,7 @@ class Dashboard::CandidatesController < ApplicationController
 
     def index
         @title = I18n.t("shared.common.candidates.title")
-        @candidates = Candidate.order("fam_name, first_name, sec_name, id").all
+        @candidates = Candidate.get_current_year_voted.order("fam_name, first_name, sec_name, id")
         cookies.permanent[:visited] = "visit"
     end
 

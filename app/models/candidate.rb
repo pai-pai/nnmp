@@ -28,4 +28,8 @@ class Candidate < ActiveRecord::Base
     def self.get_current_year_voted()
         self.joins("LEFT OUTER JOIN votes ON candidates.id = votes.candidate_id").where("votes.updated_at >= '#{Time.now.beginning_of_year}'").uniq
     end
+
+    def this_year_votes_count()
+        votes.where("updated_at >= '#{Time.now.beginning_of_year}'").count
+    end
 end
