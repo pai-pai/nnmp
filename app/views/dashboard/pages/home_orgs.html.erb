@@ -5,7 +5,7 @@
             <% if !org.candidates.blank? %>
                 <li class="org">
                     <h4 class="n-name"><%= org.name %></h4>
-                    <span class="grey small"><%= t('shared.dashboard.results.all_org') %><%= org.candidates.count %></span>
+                    <span class="grey small"><%= t('shared.dashboard.results.all_org') %><%= org.candidates.get_current_year_voted.count %></span>
                     <table width="90%">
                         <tbody>
                             <% org.top_candidates(5).each do |candidate| %>
